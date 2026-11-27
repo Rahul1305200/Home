@@ -49,17 +49,110 @@
 .remote-actions.primary{background:transparent;padding:0;gap:6px}.remote-actions.primary button{background:#fffdf8;border:1px solid #bfc9be}
 #house-remote .remote-section:last-of-type{padding-bottom:0}.house-panel header,#house-remote header{background:#faf8f2}
 
+#measure-panel{font-family:"Segoe UI",system-ui,sans-serif;color:#172d36;background:#fff;border:1px solid #ccd6d8}
+#measure-panel .drawing-header{position:static;display:flex;align-items:center;gap:14px;background:#fff;padding:12px 16px;border-bottom:1px solid #d8e0e1}
+#measure-panel .drawing-header h2{font:650 19px/1.1 "Segoe UI",system-ui,sans-serif;letter-spacing:-.035em}
+.project-location{display:block;color:#627781;font-size:11px;margin-bottom:4px}
+.drawing-modes{display:flex;gap:2px;border:1px solid #cad4d7;border-radius:6px;padding:2px;margin-left:auto}
+.drawing-modes button,#sheet-tabs button,#plan-zoom button{font:600 13px/1.2 "Segoe UI",sans-serif;color:#425660;border:0;background:transparent;cursor:pointer}
+.drawing-modes button{padding:8px 10px;border-radius:4px;white-space:nowrap}
+.drawing-modes [aria-pressed=true]{background:#253e49;color:#fff}
+#measure-panel #measure-close{flex:none;background:transparent;border:0;border-radius:4px;width:30px;color:#48606b}
+#measure-panel.in-plan{position:fixed;inset:0;z-index:12;width:100%;max-width:none;height:100%;max-height:none;display:flex;flex-direction:column;overflow:hidden;border-radius:0;padding:0}
+.in-plan #drawing-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,285px);flex:1;min-height:0}
+#drawing-sheet{display:grid;grid-template-rows:auto minmax(0,1fr) auto;min-height:0;min-width:0;background:#f6f8f8}
+#sheet-tabs{display:flex;gap:4px;padding:0 16px;border-bottom:1px solid #d2dcde;background:#edf2f3}
+#sheet-tabs button{min-height:42px;padding:0 13px;border-radius:0;border-bottom:3px solid transparent}
+#sheet-tabs [aria-pressed=true]{color:#11616b;border-color:#177b83}
+#plan-paper{position:relative;min-height:0;overflow:hidden;background:#f8fafa;background-image:radial-gradient(#cfd8db .65px,transparent .8px);background-size:14px 14px}
+#plan-svg{width:100%;height:100%;display:block;touch-action:none;user-select:none;cursor:grab}
+#plan-svg:active{cursor:grabbing}
+#plan-svg [data-element]{cursor:pointer;outline:none}
+#plan-svg .plan-surface{stroke:#627881;stroke-width:.075;fill:#fff}
+#plan-svg .room-fill{fill:#fbfcfc;stroke:none}
+#plan-svg .floor-outline{fill:#fff;stroke:#607984;stroke-width:.12}
+#plan-svg .site-outline{fill:#f6f9f6}
+#plan-svg .garden-fill,#plan-svg .roof-fixture{fill:#e0e9db;stroke:#6a8264}
+#plan-svg .balcony-fill{fill:#e6eef1}
+#plan-svg .house-block{fill:#dae4e7;stroke:#334e5b;stroke-width:.17}
+#plan-svg .access-lane{fill:#e6e8e7}
+#plan-svg .ext-wall,#plan-svg .int-wall,#plan-svg .window-line,#plan-svg .door-leaf,#plan-svg .door-arc,#plan-svg .stair-tread{fill:none;stroke:#243c47;pointer-events:none}
+#plan-svg .ext-wall{stroke-width:.48;stroke-linecap:square}#plan-svg .int-wall{stroke-width:.31;stroke-linecap:square}
+#plan-svg .window-line{stroke:#477782;stroke-width:.085}#plan-svg .door-leaf{stroke-width:.10}#plan-svg .door-arc{stroke:#71858b;stroke-width:.065}
+#plan-svg .stair-tread{stroke:#809398;stroke-width:.065}
+#plan-svg .wall-hit{stroke:transparent;stroke-width:.65;pointer-events:stroke}
+#plan-svg .room-name,#plan-svg .small-label,#plan-svg .plot-label,#plan-svg .north-label,#plan-svg .scale-text,#plan-svg .dim-text{fill:#223f4a;font-family:"Segoe UI",sans-serif;dominant-baseline:middle}
+#plan-svg .room-name{font-size:.77px;font-weight:600;paint-order:stroke;stroke:#fbfcfc;stroke-width:.15;stroke-linejoin:round}
+#plan-svg .small-label{font-size:.67px}
+#plan-svg .plot-label{font-size:.86px;font-weight:600;letter-spacing:.02px}
+#plan-svg .north-label,#plan-svg .scale-text,#plan-svg .dim-text{font-size:.78px}
+#plan-svg .north-arrow{fill:#203f48}
+#plan-svg .scale-bar{stroke:#2b4652;stroke-width:.13}
+#plan-svg .dim-line{stroke:#5b7a85;stroke-width:.067}
+#plan-svg .dim-text{fill:#315960;paint-order:stroke;stroke:#f8fafa;stroke-width:.25}
+#plan-svg .selected>.plan-surface,#plan-svg [data-element]:focus-visible>.plan-surface{fill:#d7ebe8;stroke:#167775;stroke-width:.14}
+#plan-svg .selected>.int-wall,#plan-svg .selected>.ext-wall,#plan-svg .selected>.window-line,#plan-svg .selected>.door-leaf,#plan-svg .selected>.door-arc{stroke:#028579}
+#plan-svg [data-element]:focus-visible .wall-hit{stroke:#a1ccca}
+#plan-zoom{position:absolute;bottom:12px;right:12px;background:white;border:1px solid #c8d3d6;border-radius:6px;display:flex;box-shadow:0 2px 6px #22333b12}
+#plan-zoom button{min-width:34px;min-height:33px}
+.sheet-caption{display:flex;align-items:center;gap:12px;padding:11px 18px;border-top:1px solid #cad6d8;background:white}
+.sheet-caption strong{font:600 12px Consolas,monospace;color:#326270;white-space:nowrap}
+.sheet-caption h3{margin:0;font-size:15px}.sheet-caption span{margin-left:auto;color:#51666f;font-size:12px}
+#drawing-side{background:white;padding:16px;overflow:auto;overscroll-behavior:contain}
+.in-plan #drawing-side{border-left:1px solid #d2dcde}
+#measure-info small{display:block;font-size:12px;color:#506b77}
+#measure-info h3{margin:3px 0 14px;font:650 18px/1.25 "Segoe UI",sans-serif;color:#183542}
+#measure-info dl{margin:0 0 9px}#measure-info dl div{padding:8px 0;border-color:#e0e6e8}
+#measure-info dt{font-size:12px;color:#49616d}#measure-info dd{font-size:14px;color:#203e49}
+#measure-catalog,#measure-info details{padding-top:8px}
+#measure-catalog summary,#measure-info details summary{font-size:13px;font-weight:600;color:#22586a;cursor:pointer;padding:5px 0}
+#measure-search{margin-top:8px}
+#measure-panel:not(.in-plan){width:min(340px,calc(100vw - 24px));padding:0}
+#measure-panel:not(.in-plan) .project-location,#measure-panel:not(.in-plan) .drawing-header h2{display:none}
+#measure-panel:not(.in-plan) .drawing-modes{margin:0}
+#measure-panel:not(.in-plan) #measure-close{margin-left:auto}
+#measure-panel:not(.in-plan) .drawing-header{padding:7px 12px}
+@media(max-width:720px){
+ .in-plan #drawing-body{display:flex;flex-direction:column}
+ #drawing-sheet{flex:1;min-height:0}
+ .in-plan #drawing-side{flex:none;max-height:32dvh;border:0;border-top:1px solid #cbd8db;padding:9px 14px}
+ .in-plan #drawing-side:has(details[open]){max-height:48dvh}
+ #sheet-tabs{justify-content:space-around;padding:0 6px}#sheet-tabs button{min-height:38px}
+ .sheet-caption{padding:6px 12px;gap:7px}.sheet-caption h3,.sheet-caption span{font-size:11px}
+ #measure-panel .drawing-header{padding:8px 12px;gap:6px}
+ .in-plan #measure-info h3{margin:2px 0 5px;font-size:16px}
+ .in-plan #measure-info>dl{display:flex;gap:12px;margin:0}
+ .in-plan #measure-info>dl div{flex:1;display:block;border:0;padding:3px 0}
+ .in-plan #measure-info>dl dd{text-align:left}.in-plan #measure-info dt{font-size:11px}
+ .in-plan #measure-info details,.in-plan #measure-catalog{padding-top:2px}
+}
+@media(max-height:480px) and (min-aspect-ratio:1/1){.in-plan #drawing-body{display:grid;grid-template-columns:minmax(0,1fr) 220px}.in-plan #drawing-side{max-height:100%;overflow:auto}}
+#plan-svg .room-name{font-size:1.04px;font-weight:600;stroke:#fbfcfc;stroke-width:.26}
+#plan-svg .small-label,#plan-svg .scale-text,#plan-svg .north-label,#plan-svg .dim-text{font-size:.94px}
+#plan-svg .fixture-outline{fill:#e6ecec;stroke:#84999e;stroke-width:.063;stroke-linejoin:round}
+#plan-svg .selected>.fixture-outline{fill:#c3e4df;stroke:#07776f;stroke-width:.14}
+#plan-svg .part-location rect{fill:#3c97961c;stroke:#167c76;stroke-width:.15;stroke-dasharray:.45 .18}
+#plan-svg .axon-south{fill:#c1cdd0;stroke:#5f747e;stroke-width:.055}
+#plan-svg .axon-west{fill:#dee6e7;stroke:#6a8188;stroke-width:.055}
+#plan-svg .axon-cut{fill:#415b65;stroke:#34505a;stroke-width:.055}
+#plan-svg .selected>.axon-cut{fill:#108377}
+#plan-svg .selected>.axon-south,#plan-svg .selected>.axon-west{fill:#aed9d1}
+#plan-svg .axon-label{font-size:.93px}
+#plan-axon{border-right:1px solid #d4dfe1!important;padding:0 10px}
+#plan-axon[aria-pressed=true]{background:#26434e;color:white}
 </style><canvas id="house" tabindex="0" aria-label="West Entry House, first-person three-dimensional walkthrough" aria-describedby="instructions"></canvas><div id="time-controls" role="group" aria-label="Time of day"><button type="button" aria-pressed="true">Day</button><button type="button" aria-pressed="false">Sunset</button><button type="button" aria-pressed="false">Evening</button><button type="button" aria-pressed="false">Night</button></div><label id="weather-control"><span>Weather</span><select id="weather-choice" aria-label="Weather"></select></label><div class="house-tools" role="group" aria-label="House tools">
 <button id="remote-launch" type="button" aria-expanded="false" aria-controls="house-remote"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7M5.5 10v10h13V10M10 20v-6h4v6"/></svg>House remote</button>
-<button id="measure-launch" type="button" aria-pressed="false" aria-controls="measure-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 15 12-12 6 6L9 21zM8 10l3 3m1-7 3 3"/></svg>Measurements</button>
+<button id="measure-launch" type="button" aria-pressed="false" aria-controls="measure-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 15 12-12 6 6L9 21zM8 10l3 3m1-7 3 3"/></svg>Drawings</button>
 </div>
 <svg id="measure-lines" hidden aria-hidden="true"></svg>
 <section class="house-panel" id="measure-panel" hidden aria-labelledby="measure-title">
-<header><h2 id="measure-title">Measurements</h2><button id="measure-fold" aria-expanded="true" aria-label="Minimize measurements">&#8722;</button><button id="measure-close" aria-label="Close measurements">&times;</button></header>
-<p class="measure-help">Tap the house or choose an element below.</p>
-<div id="measure-info" aria-live="polite"></div>
-<input id="measure-search" type="search" aria-label="Find a measured element" placeholder="Find a room, wall or fixture">
-<div id="measure-list"></div></section>
+<header class="drawing-header"><div><span class="project-location">Pulhat, Dinajpur</span><h2 id="measure-title">West Entry House</h2></div>
+<div class="drawing-modes" aria-label="Review mode" role="group"><button id="plan-mode" aria-pressed="true">Plans</button><button id="inspect-mode" aria-pressed="false">3D inspect</button></div><button id="measure-close" aria-label="Close drawings">&times;</button></header>
+<div id="drawing-body"><section id="drawing-sheet" aria-labelledby="sheet-title"><div id="sheet-tabs" role="group" aria-label="Drawing sheets"></div>
+<div id="plan-paper"><svg id="plan-svg" aria-label="Interactive floor plan" role="group"></svg><div id="plan-zoom" role="group" aria-label="Drawing zoom"><button id="plan-axon" aria-pressed="false">3D plan</button><button id="plan-out" aria-label="Zoom out">&minus;</button><button id="plan-fit">Fit</button><button id="plan-in" aria-label="Zoom in">+</button></div></div>
+<footer class="sheet-caption"><strong id="sheet-code"></strong><h3 id="sheet-title"></h3><span id="sheet-units">Model dimensions in feet</span></footer></section>
+<aside id="drawing-side"><div id="measure-info" aria-live="polite"></div>
+<details id="measure-catalog"><summary>Find an element</summary><input id="measure-search" type="search" aria-label="Find a measured element" placeholder="Search rooms, walls, fixtures"><div id="measure-list"></div></details></aside></div></section>
 <section id="house-remote" hidden aria-labelledby="remote-title">
   <header><h2 id="remote-title">House remote</h2><button id="remote-close" type="button" aria-label="Close house remote">×</button></header>
   <div class="remote-section">
@@ -1857,7 +1950,7 @@ function measurePlan(title,section,poly,z,note,extra=[],pick=false){
     const edges=poly.map(([x,y],i)=>[[x,y,z],[...poly[(i+1)%poly.length],z]]);
     const xs=poly.map(p=>p[0]),ys=poly.map(p=>p[1]),dx=Math.max(...xs)-Math.min(...xs),dy=Math.max(...ys)-Math.min(...ys);
     const rows=[['East–west span',inFeet(dx)],['North–south span',inFeet(dy)],['Plan area',inArea(planArea(poly))],...extra];
-    const formula=poly.length===4?measureNum(dx)+' × '+measureNum(dy)+' ft.':'Area follows the outlined polygon, including its recesses.';
+    const formula=poly.length===4?'Plan area = '+measureNum(dx)+' × '+measureNum(dy)+' = '+inArea(planArea(poly))+'.':'Area follows the outlined polygon, including its recesses.';
     const item=measured(title,section,rows,note+' '+formula,edges);
     if(pick)measureFloors.push({poly,z,item});return item;
 }
@@ -1883,6 +1976,7 @@ function prepareMeasures(){
         function room(name,poly,clear){
             const extra=clear?[['Inside-face floor area',inArea(planArea(clear))]]:[];
             const r=measurePlan(name,rooms,poly,z,'Plan area uses wall centre lines. '+(clear?'Inside-face area follows the finished wall and fitted wardrobe outline.':'Open zones use the indicated boundaries.'),extra,true);
+            if(clear){r.rows[0][0]='Grid span E–W';r.rows[1][0]='Grid span N–S'}
             if(clear)r.lines=clear.map(([x,y],i)=>[[x,y,z+.025],[...clear[(i+1)%clear.length],z+.025]]);
         }
         // The bedroom lining tapers over 0.78 ft at each end of the built-in.
@@ -1957,9 +2051,21 @@ function measureElement(tag,text,parent){
 }
 function showMeasureItem(item){
     measureSelected=item;measureCameraKey='';measureInfo.replaceChildren();
-    measureElement('h3',item.title,measureInfo);const dl=measureElement('dl',null,measureInfo);
-    for(const [key,value] of item.rows){const r=measureElement('div',null,dl);measureElement('dt',key,r);measureElement('dd',value,r)}
-    measureElement('p',item.note,measureInfo);
+    if(isPlanMode()&&sheetFor(item)!==currentSheet)selectSheet(sheetFor(item),false);
+    const context=item.section.replace(' rooms',' floor').replace('Upstairs floor','Upper floor');
+    measureElement('small',context,measureInfo);
+    measureElement('h3',drawingTitle(item),measureInfo);
+    const keys=item===measureEntries[0]?[2,3,4]:item.rows.map((_,i)=>i).slice(0,3);
+    if(item.rows.some(r=>r[0]==='Inside-face floor area'))keys[2]=item.rows.length-1;
+    if(item.rows.some(r=>r[0]==='Net face'))keys[2]=item.rows.length-1;
+    const fill=(dl,k,v)=>{const r=measureElement('div',null,dl);measureElement('dt',k,r);measureElement('dd',v,r)};
+    const dl=measureElement('dl',null,measureInfo);
+    for(const i of keys)fill(dl,...item.rows[i]);
+    const details=measureElement('details',null,measureInfo);measureElement('summary','Calculation details',details);
+    const rest=item.rows.filter((_,i)=>!keys.includes(i));
+    if(rest.length){const more=measureElement('dl',null,details);for(const [k,v] of rest)fill(more,k,v)}
+    measureElement('p',item.note,details);
+    if(isPlanMode())markPlanSelection();
     for(const b of measureList.querySelectorAll('.measure-item'))b.setAttribute('aria-pressed',String(Number(b.value)===item.id));
     measurePanel.scrollTop=0;request();
 }
@@ -1977,20 +2083,14 @@ function showMeasurements(open){
     if(open&&!remotePanel.hidden)showRemote(false);
     measurePanel.hidden=!open;measureLines.toggleAttribute("hidden",!open);measureLaunch.setAttribute('aria-pressed',String(open));
     resetInput();
-    if(open){prepareMeasures();dismiss();listMeasurements();showMeasureItem(measureSelected||measureEntries[0]);document.getElementById('measure-close').focus()}
-    else{measureLines.replaceChildren();measureCameraKey='';cvs.focus({preventScroll:true})}
+    if(open){prepareMeasures();dismiss();setDrawingMode(true,false);selectSheet(currentSheet);document.getElementById('plan-mode').focus()}
+    else{isolateDrawingSheet(false);document.body.classList.remove('reading-plan');last=performance.now();measureLines.replaceChildren();measureCameraKey='';cvs.focus({preventScroll:true})}
     request();
 }
 measureLaunch.onclick=()=>showMeasurements(measurePanel.hidden);
-const measureFold=document.getElementById('measure-fold');
-measureFold.onclick=()=>{
-    const folded=measurePanel.classList.toggle('folded');
-    measureFold.textContent=folded?'+':'−';measureFold.setAttribute('aria-expanded',String(!folded));
-    measureFold.setAttribute('aria-label',folded?'Expand measurements':'Minimize measurements');
-};
 document.getElementById('measure-close').onclick=()=>showMeasurements(false);
 measureSearch.oninput=listMeasurements;
-measureList.onclick=e=>{const b=e.target.closest('.measure-item');if(b)showMeasureItem(measureEntries[Number(b.value)])};
+measureList.onclick=e=>{const b=e.target.closest('.measure-item');if(b){showMeasureItem(measureEntries[Number(b.value)]);document.getElementById('measure-catalog').open=false;document.querySelector('#measure-catalog summary').focus()}};
 function measureView(c){
     const w=cvs.clientWidth,h=cvs.clientHeight,[a,b]=c.a,ca=Math.cos(a),sa=Math.sin(a);
     const level=accelerated?Math.max(0,Math.min(1,(-c.p[0]-2)/8))*Math.max(0,1-Math.abs(b-.36)/.77)*Math.max(0,ca):0;
@@ -2114,11 +2214,311 @@ function pickMeasurement(x,y){
 }
 
 
+const sheetDefs=[
+    {tab:'Site',title:'Site plan',code:'A-001',entry:1},
+    {tab:'Ground',title:'Ground floor plan',code:'A-101',entry:2},
+    {tab:'Upper',title:'Upper floor plan',code:'A-102',entry:3},
+    {tab:'Roof',title:'Roof terrace plan',code:'A-103',entry:4}
+];
+let axon=false;
+const planSvg=document.getElementById('plan-svg'),catalog=document.getElementById('measure-catalog');
+const planToggle=document.getElementById('plan-mode'),inspectToggle=document.getElementById('inspect-mode');
+let currentSheet=1,planBox=[],baseBox=[],pan=null;
+function isPlanMode(){return document.body.classList.contains('reading-plan')}
+function drawingTitle(item){
+    if(item.id===1)return 'Plot boundary';
+    if(item.id>=2&&item.id<=4)return sheetDefs[item.id-1].title;
+    return item.title;
+}
+function sheetFor(item){
+    if(item.id<=6)return [0,0,1,2,3,0,0][item.id];
+    if(/^(Upper|Upstairs)/.test(item.section))return 2;
+    if(/^Roof/.test(item.section))return 3;
+    if(item.meshGroup)return item.meshGroup.low[2]>=FLOOR+2*RISE-.3?3:item.meshGroup.low[2]>=FLOOR+RISE-.3?2:1;
+    return 1;
+}
+function isolateDrawingSheet(active){
+    for(const el of document.querySelectorAll('#house,.house-tools,#house-remote,#time-controls,#weather-control,#eagle-shortcut,#eagle-nav'))el.inert=active;
+}
+function setDrawingMode(plan,locate=true){
+    isolateDrawingSheet(plan);
+    document.body.classList.toggle('reading-plan',plan);
+    measurePanel.classList.toggle('in-plan',plan);
+    planToggle.setAttribute('aria-pressed',String(plan));inspectToggle.setAttribute('aria-pressed',String(!plan));
+    document.getElementById('drawing-sheet').hidden=!plan;measureLines.toggleAttribute('hidden',plan);
+    measureCameraKey='';resetInput();catalog.open=false;
+    if(!plan){if(locate&&measureSelected)visitMeasuredItem(measureSelected);last=performance.now();cvs.focus({preventScroll:true});request()}
+}
+function visitMeasuredItem(item){
+    if([0,1].includes(item.id)){
+        if(!eagle)toggleEagle();
+        eagle.x=15.5;eagle.y=19;eagle.h=54;state.a=[.45,-1.18];target=state.a.slice();request();return;
+    }
+    const sheet=sheetFor(item),level=Math.max(0,sheet-1);
+    const zone=measureFloors.find(r=>r.item===item),source=item.lines.flat();
+    if(!source.length)return;
+    if(eagle)toggleEagle();
+    const xy=source.reduce((s,p)=>[s[0]+p[0]/source.length,s[1]+p[1]/source.length],[0,0]);
+    const focusZ=zone?zone.z+2.5:source.reduce((sum,p)=>sum+p[2]/source.length,0);
+    let best=null;
+    for(const radius of [5,3,1.6,7,10]){
+        for(let j=0;j<16;j++){
+            const angle=(j+1)*Math.PI/8,x=xy[0]-radius*Math.cos(angle),y=xy[1]-radius*Math.sin(angle);
+            if(zone&&!insidePlan(x,y,zone.poly))continue;
+            if(!walkable(walls,x,y,level,openings(x,y,foot(x,y,level)+EYE),state))continue;
+            best=[x,y,angle,radius];break;
+        }
+        if(best)break;
+    }
+    if(!best)return;
+    const [x,y,yaw,dist]=best,z=foot(x,y,level)+EYE;
+    state.level=level;state.p=[x,y,z];state.a=[yaw,Math.max(-.9,Math.min(.9,Math.atan2(focusZ-z,dist)))];
+    state.o=openings(...state.p);target=state.a.slice();oldFloor=z;manualLook=true;approachCompleted=true;
+}
+planToggle.onclick=()=>{if(!isPlanMode()){setDrawingMode(true);selectSheet(measureSelected?sheetFor(measureSelected):currentSheet,false);markPlanSelection()}};
+inspectToggle.onclick=()=>{if(isPlanMode())setDrawingMode(false)};
+catalog.ontoggle=()=>{if(catalog.open){listMeasurements();measureSearch.focus({preventScroll:true})}};
+const tabRow=document.getElementById('sheet-tabs');
+sheetDefs.forEach((def,i)=>{const b=measureElement('button',def.tab,tabRow);b.onclick=()=>selectSheet(i)});
+function selectSheet(index,selectDefault=true){
+    currentSheet=index;if(index===0||index===3)axon=false;catalog.open=false;measureSearch.value='';
+    const def=sheetDefs[index];document.getElementById('sheet-title').textContent=def.title;
+    document.getElementById('sheet-code').textContent=def.code;
+    Array.from(tabRow.children).forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));
+    renderSheet();if(selectDefault)showMeasureItem(measureEntries[def.entry]);
+}
+function planNode(tag,attrs={},parent=planSvg,value){
+    const el=document.createElementNS('http://www.w3.org/2000/svg',tag);
+    for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);
+    if(value!=null)el.textContent=value;parent.append(el);return el;
+}
+function drawingGroup(item,title){
+    const g=planNode('g',{'data-element':item.id,role:'button','aria-label':title||drawingTitle(item),tabindex:'0'});
+    planNode('title',{},g,title||drawingTitle(item));return g;
+}
+function planLine(x,y,X,Y,cls,parent=planSvg){return planNode('line',{x1:x,y1:-y,x2:X,y2:-Y,class:cls},parent)}
+function planText(x,y,label,cls,parent=planSvg){return planNode('text',{x,y:-y,class:cls,'text-anchor':'middle'},parent,label)}
+function surface(poly,item,cls){
+    const g=drawingGroup(item);
+    planNode('polygon',{points:poly.map(([x,y])=>x+','+(-y)).join(' '),class:'plan-surface '+cls},g);return g;
+}
+function footprint(item){return item.lines.map(([p])=>p.slice(0,2))}
+function dimension(x,y,X,Y,value){
+    const midX=(x+X)/2,midY=(y+Y)/2,vertical=x===X;
+    planLine(x,y,X,Y,'dim-line');
+    for(const [a,b] of [[x,y],[X,Y]])planLine(a-.25,b-.25,a+.25,b+.25,'dim-line');
+    const label=planText(midX,midY+.32,value,'dim-text');
+    if(vertical)label.setAttribute('transform','rotate(-90 '+midX+' '+(-midY)+')');
+}
+function dimFt(n){
+    const inches=Math.round(n*12),ft=Math.floor(inches/12);
+    return ft+'′'+(inches%12?' '+(inches%12)+'″':'');
+}
+function wallPlan(w,i,level){
+    const [axis,k,lo,hi,opens,external]=w,at=t=>axis==='x'?[t,k]:[k,t];
+    const row=measureSolids.filter(s=>s.z===FLOOR+level*RISE)[i];
+    const roof=measureGroups.find(g=>g.name==='Roof / stair enclosure');
+    const item=row?.row||roof?.item;if(!item)return;
+    const g=drawingGroup(item);let start=lo;
+    function solid(a,b){if(b<=a)return;planLine(...at(a),...at(b),'wall-hit',g);planLine(...at(a),...at(b),external?'ext-wall':'int-wall',g)}
+    for(const [j,[a,b,kind,hinge]] of opens.entries()){
+        solid(start,a);start=b;
+        const op=row?.parts[j]?.item||item,og=drawingGroup(op);
+        planLine(...at(a),...at(b),'wall-hit',og);
+        if(kind==='door'){
+            const h=hinge||(level===0&&axis==='y'&&k===0?entryLeaf:null);if(!h)continue;
+            const [x,y,,sense,ux,uy,r]=h,px=x+ux*r,py=y+uy*r,qx=x-sense*uy*r,qy=y+sense*ux*r;
+            planLine(x,y,qx,qy,'door-leaf',og);
+            planNode('path',{d:'M '+px+' '+(-py)+' A '+r+' '+r+' 0 0 '+(sense>0?0:1)+' '+qx+' '+(-qy),class:'door-arc'},og);
+        }else if(kind!=='opening'){
+            for(const d of [-.10,.10]){const p=at(a),q=at(b),axisIdx=axis==='x'?1:0;p[axisIdx]+=d;q[axisIdx]+=d;planLine(...p,...q,'window-line',og)}
+        }
+    }solid(start,hi);
+}
+const roomNames={'Northwest bedroom':'NW bedroom','Northeast bedroom':'NE bedroom','Southeast bedroom':'SE bedroom','hall bathroom':'Common bath','west ensuite':'W bath','east ensuite':'E bath','Dining and entrance zone':'Dining / entry','Bedroom hallway':'Hall','Kitchen area':'Kitchen','Prayer area':'Prayer room','Garage bay':'Garage','Stair hall':'Stairs'};
+function roomLabel(r){
+    const xs=r.poly.map(p=>p[0]),ys=r.poly.map(p=>p[1]);let x=(Math.min(...xs)+Math.max(...xs))/2,y=(Math.min(...ys)+Math.max(...ys))/2;
+    if(r.item.title==='Dining and entrance zone'){x=14;y=22}
+    if(r.item.title==='Southeast bedroom'){x=25.65;y=7}
+    return [x,y];
+}
+function drawStair(){
+    const left=3.75,right=10.05;
+    for(let i=0;i<=7;i++)planLine(left+i*.9,11.8,left+i*.9,19.27,'stair-tread');
+    planLine(left,15.51,right,15.51,'int-wall');
+}
+function renderSheet(){
+    planSvg.replaceChildren();document.getElementById('plan-axon').hidden=currentSheet!==1&&currentSheet!==2;
+    document.getElementById('plan-axon').setAttribute('aria-pressed',String(axon));
+    document.getElementById('sheet-units').textContent=axon?'Cut at 3 ft 6 in':'Model dimensions in feet';
+    baseBox=currentSheet===0?[-17,-47,59,57]:[-6,-44,41,51];planBox=baseBox.slice();applyPlanBox();
+    const floor=measureEntries[sheetDefs[currentSheet].entry],east=walls[0].find(w=>w[0]==='y'&&w[5]&&w[1]>20)[1];
+    if(currentSheet===0){
+        planNode('rect',{x:-14,y:-41.416,width:10,height:44.416,class:'access-lane'});
+        const road=planText(-9,19,'WEST ACCESS LANE  ·  10 FT','plot-label');road.setAttribute('transform','rotate(-90 -9 -19)');
+        surface(footprint(floor),floor,'site-outline');
+        const house=measureEntries[2];surface(footprint(house),house,'house-block');const h=planText(east/2,19,'House footprint','plot-label');h.style.pointerEvents='none';
+        const garden=measureEntries[5],gg=surface(footprint(garden),garden,'garden-fill');
+        const label=planText(32,18,'Kitchen garden','room-name',gg);label.setAttribute('transform','rotate(-90 32 -18)');
+        const ramp=measureEntries[6];surface(rectPlan(-4,.72,0,10.78),ramp,'balcony-fill');
+        dimension(-4,43.8,35,43.8,dimFt(39));dimension(37,-3,37,41.416,dimFt(44.416));dimension(29,-5.2,35,-5.2,dimFt(6));
+    }else{
+        surface(footprint(floor),floor,'floor-outline');
+        if(currentSheet===3){
+            const roofItems=measureGroups.filter(g=>/^Roof garden \/ (dining table \/ timber|barbecue island \/ stone|herb planter|quiet bench \/ timber|roof .+ \/ planter)$/.test(g.name));
+            for(const g of roofItems){
+                const [x,y]=g.low,[X,Y]=g.high,el=surface(rectPlan(x,y,X,Y),g.item,'roof-fixture');
+                const label=g.name.includes('barbecue')?'BBQ':g.name.includes('dining')?'Table':g.name.includes('herb')?'Herbs':g.name.includes('bench')?'Bench':'';
+                if(label)planText((x+X)/2,(y+Y)/2,label,'small-label',el);
+            }
+            walls[2].forEach((w,i)=>wallPlan(w,i,2));planText(7,15.55,'Stair enclosure','room-name');
+        }else{
+            const level=currentSheet-1,rooms=measureFloors.filter(r=>r.z===FLOOR+level*RISE);
+            for(const r of rooms){surface(r.poly,r.item,r.item.title.includes('balcony')?'balcony-fill':'room-fill')}
+            drawFurniture(level);drawStair();walls[level].forEach((w,i)=>wallPlan(w,i,level));
+            for(const r of rooms){
+                const [x,y]=roomLabel(r),el=drawingGroup(r.item);el.removeAttribute('tabindex');
+                planText(x,y,roomNames[r.item.title]||r.item.title,'room-name',el);
+            }
+        }
+        dimension(0,40.2,east,40.2,dimFt(east));dimension(east+2,0,east+2,38,dimFt(38));
+    }
+    const bx=baseBox[0]+2.7,by=-(baseBox[1]+2.4);planText(bx,by,'N','north-label');
+    planNode('path',{d:'M '+bx+' '+(-by+.5)+' l -.45 1.45 .45 -.3 .45 .3 Z',class:'north-arrow'});
+    const sy=currentSheet===0?-6.6:-3.2;planLine(0,sy,5,sy,'scale-bar');
+    for(const n of [0,5])planLine(n,sy-.22,n,sy+.22,'scale-bar');
+    planText(2.5,sy-.95,'5 ft','scale-text');
+    if(axon)makeAxonometric(currentSheet-1);
+    markPlanSelection();
+}
+function markPlanSelection(){
+    planSvg.querySelector('.part-location')?.remove();
+    let found=false;
+    for(const el of planSvg.querySelectorAll('[data-element]')){
+        const active=Number(el.dataset.element)===measureSelected?.id;el.classList.toggle('selected',active);found||=active;
+    }
+    if(found||!measureSelected?.lines.length||sheetFor(measureSelected)!==currentSheet)return;
+    const points=measureSelected.lines.flat(),xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
+    const x=Math.min(...xs),X=Math.max(...xs),y=Math.min(...ys),Y=Math.max(...ys);
+    const g=planNode('g',{class:'part-location','pointer-events':'none'});
+    const parent=axon?planSvg.querySelector('.axon-base'):planSvg;parent.append(g);
+    planNode('rect',{x:x-.12,y:-Y-.12,width:X-x+.24,height:Y-y+.24,rx:.05},g);
+}
+function applyPlanBox(){planSvg.setAttribute('viewBox',planBox.join(' '))}
+function planPoint(x,y){return new DOMPoint(x,y).matrixTransform(planSvg.getScreenCTM().inverse())}
+function zoomPlan(factor,p){
+    const [x,y,w,h]=planBox,scale=Math.max(.24,Math.min(1.5,w/baseBox[2]*factor))*baseBox[2]/w;
+    p=p||{x:x+w/2,y:y+h/2};planBox=[p.x+(x-p.x)*scale,p.y+(y-p.y)*scale,w*scale,h*scale];applyPlanBox();
+}
+document.getElementById('plan-in').onclick=()=>zoomPlan(.75);document.getElementById('plan-out').onclick=()=>zoomPlan(1/.75);
+document.getElementById('plan-fit').onclick=()=>{planBox=baseBox.slice();applyPlanBox()};
+planSvg.addEventListener('wheel',e=>{e.preventDefault();zoomPlan(e.deltaY>0?1.1:1/1.1,planPoint(e.clientX,e.clientY))},{passive:false});
+planSvg.onpointerdown=e=>{
+    if(e.button!==0||pan)return;pan={id:e.pointerId,x:e.clientX,y:e.clientY,point:planPoint(e.clientX,e.clientY),hit:e.target.closest('[data-element]'),drag:false};
+    planSvg.setPointerCapture(e.pointerId);
+};
+planSvg.onpointermove=e=>{
+    if(!pan||pan.id!==e.pointerId)return;
+    if(!pan.drag&&Math.hypot(e.clientX-pan.x,e.clientY-pan.y)<5)return;
+    pan.drag=true;const p=planPoint(e.clientX,e.clientY);planBox[0]+=pan.point.x-p.x;planBox[1]+=pan.point.y-p.y;applyPlanBox();
+};
+planSvg.onpointerup=e=>{if(!pan||pan.id!==e.pointerId)return;const old=pan;pan=null;if(!old.drag&&old.hit)showMeasureItem(measureEntries[Number(old.hit.dataset.element)])};
+planSvg.onlostpointercapture=planSvg.onpointercancel=e=>{if(pan?.id===e.pointerId)pan=null};
+planSvg.onkeydown=e=>{const item=e.target.closest('[data-element]');if(item&&['Enter',' '].includes(e.key)){e.preventDefault();showMeasureItem(measureEntries[Number(item.dataset.element)])}};
+
+// Cache footprint outlines from the actual furniture triangles. This layer is schematic at 1 in resolution.
+const furnitureOutlines=new Map();
+function furniturePath(g){
+    if(furnitureOutlines.has(g.name))return furnitureOutlines.get(g.name);
+    const res=12,x0=g.low[0]-.2,y0=g.low[1]-.2,w=Math.ceil((g.high[0]-x0+.2)*res),h=Math.ceil((g.high[1]-y0+.2)*res);
+    const ctx=new OffscreenCanvas(w,h).getContext('2d',{willReadFrequently:true});
+    const {idx,pos}=measureMesh,path=new Path2D();
+    for(let i=g.start;i<g.start+g.count;i+=3){
+        const a=idx[i]*3,b=idx[i+1]*3,c=idx[i+2]*3;
+        const cross=(pos[b]-pos[a])*(pos[c+1]-pos[a+1])-(pos[b+1]-pos[a+1])*(pos[c]-pos[a]);
+        if(!cross)continue;
+        const coords=cross>0?[a,b,c]:[a,c,b];
+        coords.forEach((j,k)=>{const x=(pos[j]/128-x0)*res,y=(pos[j+1]/128-y0)*res;if(k===0)path.moveTo(x,y);else path.lineTo(x,y)});
+        path.closePath();
+    }
+    ctx.fill(path);
+    const data=ctx.getImageData(0,0,w,h).data,stride=w+1,edges=new Map();
+    function occupied(x,y){return x>=0&&y>=0&&x<w&&y<h&&data[(y*w+x)*4+3]>110}
+    function edge(a,b){let v=edges.get(a);if(!v){v=[];edges.set(a,v)}v.push(b)}
+    for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+        if(!occupied(x,y))continue;const a=y*stride+x;
+        if(!occupied(x,y-1))edge(a,a+1);if(!occupied(x+1,y))edge(a+1,a+stride+1);
+        if(!occupied(x,y+1))edge(a+stride+1,a+stride);if(!occupied(x-1,y))edge(a+stride,a);
+    }
+    const loops=[];
+    while(edges.size){
+        const start=edges.keys().next().value,points=[];let at=start,prev=-1;
+        do{
+            const nexts=edges.get(at);if(!nexts)break;
+            const next=nexts.pop();if(!nexts.length)edges.delete(at);
+            if(prev===-1||at-prev!==next-at)points.push(at);
+            prev=at;at=next;
+        }while(at!==start);
+        if(points.length>=3)loops.push('M'+points.map(i=>(x0+(i%stride)/res).toFixed(2)+' '+(-y0-Math.floor(i/stride)/res).toFixed(2)).join('L')+'Z');
+    }
+    const svgPath=loops.join('');furnitureOutlines.set(g.name,svgPath);return svgPath;
+}
+function drawFurniture(level){
+    const prefix=level?'Upper / ':'Ground / ';
+    for(const g of measureGroups){
+        const n=g.name;
+        const eligible=n.startsWith(prefix)&&/Furnishings bedroom|Furnishings lounge$|Furnishings \/ Dining table$|Bedroom storage|Kitchen millwork|oak vanity|glazed porcelain|Temple built-in|Garage bikes \/ (mechanical|paint)/.test(n);
+        if(!eligible&&!(level===0&&n==='Foyer / oak bench'))continue;
+        const d=furniturePath(g);if(!d)continue;
+        planNode('path',{d,class:'fixture-outline','fill-rule':'evenodd'},drawingGroup(g.item));
+    }
+}
+function isoPoint(x,y,z){return [.8660254*(x-y),-.5*(x+y)-z]}
+function makeAxonometric(level){
+    const children=Array.from(planSvg.children);
+    const base=planNode('g',{transform:'matrix(.8660254 -.5 .8660254 .5 0 0)',class:'axon-base'});
+    const labels=[];
+    for(const child of children){
+        const label=child.querySelector('.room-name');
+        if(label){labels.push([Number(label.getAttribute('x')),-Number(label.getAttribute('y')),label.textContent,child.dataset.element]);child.remove();continue}
+        if(child.classList.contains('north-label')||child.classList.contains('north-arrow')||child.classList.contains('dim-line')||child.classList.contains('dim-text')||child.classList.contains('scale-bar')||child.classList.contains('scale-text')){child.remove();continue}
+        base.append(child);
+    }
+    const solids=measureSolids.filter(w=>w.z===FLOOR+level*RISE),faces=[];
+    for(const [i,[axis,k,start,end,open,ext]] of walls[level].entries()){
+        const depth=ext?.25:.17,wallItem=solids[i].row;
+        const block=(a,b,height)=>{
+            if(a>=b||height<=0)return;
+            const poly=axis==='x'?rectPlan(a,k-depth,b,k+depth):rectPlan(k-depth,a,k+depth,b);
+            const [p,q,,s]=poly;
+            const face=(coords,style)=>faces.push({coords,style,item:wallItem,depth:(a+b)/2+k});
+            face([isoPoint(...p,0),isoPoint(...q,0),isoPoint(...q,height),isoPoint(...p,height)],'axon-south');
+            face([isoPoint(...p,0),isoPoint(...s,0),isoPoint(...s,height),isoPoint(...p,height)],'axon-west');
+            face(poly.map(v=>isoPoint(...v,height)),'axon-cut');
+        };
+        let cursor=start;
+        for(const [a,b,kind] of open){block(cursor,a,3.5);block(a,b,kind==='high'?3.5:['glass','guarded'].includes(kind)?.13:0);cursor=b}
+        block(cursor,end,3.5);
+    }
+    faces.sort((a,b)=>b.depth-a.depth);
+    for(const f of faces){
+        const g=planNode('g',{'data-element':f.item.id});
+        planNode('polygon',{points:f.coords.map(v=>v.join(',')).join(' '),class:f.style},g);
+    }
+    for(const [x,y,name,id] of labels){
+        const [a,b]=isoPoint(x,y,0),g=planNode('g',{'data-element':id});
+        planText(a,-b,name,'room-name axon-label',g);
+    }
+    baseBox=[-37,-40,66,45];planBox=baseBox.slice();applyPlanBox();
+}
+document.getElementById('plan-axon').onclick=()=>{axon=!axon;renderSheet()};
+
+
 window.addEventListener('hashchange',()=>{placeAtEntrance();resetInput();request()});
 
 let rendererLost=false;
 function scheduleFrame(){
-  if(rendererLost||again||document.visibilityState!=='visible')return;
+  if(document.body.classList.contains('reading-plan')||rendererLost||again||document.visibilityState!=='visible')return;
   const ticket=++frameTicket;
   function deliver(ts){
     if(ticket!==frameTicket)return;
@@ -2150,7 +2550,7 @@ function tuneScale(dt,now){
 }
 function request(){dirty=true;if(!again&&document.visibilityState==='visible')scheduleFrame()}
 function resetInput(){keyboard.clear();pointers.clear();analog=[0,0];linear=[0,0];}
-function tick(now){again=0;let elapsed=Math.max(.001,(now-last)/1000),dt=Math.min(.10,elapsed);last=now;const ease=1-Math.exp(-dt*18);
+function tick(now){again=0;if(document.body.classList.contains('reading-plan'))return;let elapsed=Math.max(.001,(now-last)/1000),dt=Math.min(.10,elapsed);last=now;const ease=1-Math.exp(-dt*18);
 let spin=(keyboard.has('arrowleft')||keyboard.has('q')?1:0)-(keyboard.has('arrowright')||keyboard.has('e')?1:0);if(spin)manualLook=true;
 if(!manualLook&&!approachCompleted){
   const progress=Math.max(0,Math.min(1,(state.p[0]+16)/13));
@@ -2210,7 +2610,7 @@ cvs.onpointerleave=()=>{if(!pointers.size&&hoverHint)exteriorHover(null)};
 const allowed=['shift','w','a','s','d','q','e','arrowup','arrowdown','arrowleft','arrowright'];
 window.onkeydown=e=>{let key=e.key.toLowerCase();if(e.ctrlKey||e.metaKey||e.altKey)return;
 if(key==='escape'&&!measurePanel.hidden){e.preventDefault();showMeasurements(false);return}
-if(e.target===measureSearch)return;
+if(e.target===measureSearch||document.body.classList.contains('reading-plan'))return;
 if(remotePanel.hidden&&e.target?.tagName!=='SELECT'&&e.target?.tagName!=='INPUT'){if((key==='b'||key==='escape'&&eagle)&&!e.repeat){e.preventDefault();toggleEagle();return}if(eagle&&['=','+','-'].includes(key)){e.preventDefault();eagleZoom(key==='-'?1.18:.85);return}}
 if(key==='v'&&!e.repeat&&e.target?.tagName!=='SELECT'&&remotePanel.hidden){e.preventDefault();toggleTownView();return}
 if(key==='m'&&!e.repeat&&e.target?.tagName!=='SELECT'){e.preventDefault();showRemote(remotePanel.hidden);return}
