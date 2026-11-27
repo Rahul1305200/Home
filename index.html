@@ -12,34 +12,58 @@
 #weather-control span{color:#c2ccc4}#weather-choice{max-width:136px;padding:6px 2px;color:inherit;background:#1c2726;border:0;border-radius:4px;font:inherit;cursor:pointer;color-scheme:dark}
 #weather-choice:focus-visible{outline:2px solid #acddff}
 @media(pointer:coarse){#weather-control{right:max(7px,env(safe-area-inset-right));top:calc(max(7px,env(safe-area-inset-top)) + 56px);min-height:42px}}
-.remote-launch,#house-remote{color:#f5f1e6;background:#192524f5;border:1px solid #ffffff36;font:500 13px/1.3 system-ui,sans-serif;box-shadow:0 4px 18px #0b161b32}
-.remote-launch{position:fixed;left:max(15px,env(safe-area-inset-left));top:max(15px,env(safe-area-inset-top));padding:0 13px;height:42px;border-radius:10px;cursor:pointer}
-.remote-launch[aria-expanded=true]{background:#f2ecdd;color:#232b28}
-#house-remote{position:fixed;left:max(15px,env(safe-area-inset-left));top:calc(max(15px,env(safe-area-inset-top)) + 50px);width:min(290px,calc(100vw - 28px));max-height:calc(100% - 76px);overflow:auto;overscroll-behavior:contain;border-radius:13px;padding:13px 15px 14px;z-index:4;color-scheme:dark}
-#house-remote[hidden]{display:none}
-#house-remote header{display:flex;align-items:center;justify-content:space-between}
-#house-remote h2{font-size:18px;font-weight:600;margin:0;letter-spacing:-.025em}
-#house-remote h3,#house-remote label{display:block;font-size:12px;font-weight:600;margin:0 0 6px;color:#e9ece1}
-#house-remote button,#house-remote select{color:inherit;font:inherit;cursor:pointer}
-#remote-close{border:0;background:transparent;font-size:22px!important;width:32px;height:32px;border-radius:6px}
-.remote-section{border-top:1px solid #ffffff24;margin-top:10px;padding-top:10px}
-.remote-actions{display:flex;gap:5px}
-.remote-actions button{border:1px solid #71847a80;background:#32413b;border-radius:6px;min-height:31px;flex:1}
-.remote-actions button[aria-pressed=true],.remote-actions.primary button:first-child{background:#e9e1cc!important;color:#252c27!important}
-#house-remote select{width:100%;background:#23312d;border:1px solid #687b70;border-radius:6px;min-height:33px;padding:4px 7px;margin-bottom:6px}
-#house-remote output{display:block;font-size:11px;color:#becdc0;margin-top:5px;min-height:14px}
-#house-remote :focus-visible,.remote-launch:focus-visible{outline:2px solid #b7deff;outline-offset:1px}
-@media(hover:hover){#house-remote button:hover{filter:brightness(1.18)}}
-@media(pointer:coarse){.remote-launch{left:max(7px,env(safe-area-inset-left));top:max(7px,env(safe-area-inset-top));height:44px}#house-remote{left:max(7px,env(safe-area-inset-left));top:calc(max(7px,env(safe-area-inset-top)) + 51px);max-height:calc(100% - 65px)}.remote-actions button,#house-remote select{min-height:40px}}
-@media(max-width:399px){.remote-launch{height:35px;top:calc(max(7px,env(safe-area-inset-top)) + 55px)}#time-controls{right:7px}#house-remote{top:calc(max(7px,env(safe-area-inset-top)) + 98px);max-height:calc(100% - 108px)}}
-#eagle-nav,#map-source{position:fixed;background:#182722eb;color:#f0ecdf;border-radius:7px;font:12px/1.5 system-ui;z-index:2}#eagle-nav{bottom:22px;left:50%;transform:translateX(-50%);padding:4px;white-space:nowrap}#eagle-nav button{font:inherit;background:transparent;color:inherit;border:0;min-height:38px;min-width:40px;cursor:pointer}#map-source{right:8px;bottom:5px;padding:2px 7px;max-width:min(335px,85vw);font-size:10px}#map-source summary{cursor:pointer}#map-source a{color:#dce9b3}#town-volume{max-width:55%;accent-color:#d0c4a2}#town-level{float:right}
-#eagle-shortcut{position:fixed;left:max(15px,env(safe-area-inset-left));bottom:max(12px,env(safe-area-inset-bottom));cursor:pointer;font:500 12px system-ui;border:1px solid #ffffff45;border-radius:8px;background:#192524ee;color:#f3eddf;min-height:38px;padding:0 13px}
+.house-tools,.house-panel,#house-remote,#eagle-shortcut,#eagle-nav{font:500 14px/1.4 "Segoe UI",system-ui,sans-serif}
+.house-tools{position:fixed;left:max(16px,env(safe-area-inset-left));top:max(16px,env(safe-area-inset-top));display:flex;gap:3px;padding:4px;border-radius:13px;background:#f8f6ef;color:#293d36;border:1px solid #dddcd1;box-shadow:0 3px 14px #16261f24;z-index:4}
+.house-tools button,.house-panel button,#house-remote button{font:inherit;color:inherit;cursor:pointer}
+.house-tools button{display:flex;align-items:center;gap:7px;min-height:36px;border:0;padding:0 11px;background:transparent;border-radius:9px}
+.house-tools svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.65}
+.house-tools button[aria-expanded=true],.house-tools button[aria-pressed=true]{background:#294b3e;color:white}
+.house-panel,#house-remote{position:fixed;z-index:5;top:68px;left:max(16px,env(safe-area-inset-left));width:min(330px,calc(100vw - 32px));max-height:calc(100dvh - 84px);overflow:auto;overscroll-behavior:contain;background:#faf8f2;color:#273b32;border:1px solid #d4d4c8;border-radius:15px;padding:0 17px 14px;box-shadow:0 8px 32px #18292038;color-scheme:light;scrollbar-width:thin}
+[hidden]{display:none!important}
+.house-panel header,#house-remote header{display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#faf8f2;z-index:1;padding:15px 0 12px;border-bottom:1px solid #d7d7cb}
+.house-panel h2,#house-remote h2{font:600 21px/1.2 Georgia,serif;margin:0;letter-spacing:-.025em}
+#remote-close,#measure-close{border:1px solid #dcded5;background:transparent;border-radius:50%;height:32px;width:32px;font-size:20px!important;line-height:1}
+.remote-section{padding:10px 0;border-bottom:1px solid #dedfd4}
+.remote-section:last-of-type{border:0}
+#house-remote h3,#house-remote label{display:block;font-size:12px;font-weight:650;margin:0 0 6px;color:#425449}
+.remote-actions{display:flex;gap:3px;padding:3px;background:#eaece2;border-radius:8px}
+.remote-actions button{border:1px solid transparent;flex:1;border-radius:6px;background:transparent;min-height:32px}
+.remote-actions button[aria-pressed=true]{background:#325144;color:white!important}
+#house-remote select,#measure-search{width:100%;color:#25382f;font:inherit;background:#fffefa;border:1px solid #c8cfc1;border-radius:8px;padding:7px 9px;margin-bottom:6px;min-height:35px}
+#town-level{float:right;font-variant-numeric:tabular-nums}#town-volume{width:48%;margin:0 8px;accent-color:#325144}
+.house-tools :focus-visible,.house-panel :focus-visible,#house-remote :focus-visible{outline:2px solid #28745b;outline-offset:1px}
+@media(hover:hover){.house-tools button:hover,.remote-actions button:hover,.measure-item:hover{box-shadow:inset 0 0 0 1px #849d89}}
+#eagle-shortcut,#eagle-nav{position:fixed;bottom:max(12px,env(safe-area-inset-bottom));background:#20382e;color:white;border:1px solid #ffffff40;border-radius:9px;padding:0 13px;cursor:pointer;min-height:38px;z-index:2}#eagle-shortcut{left:16px}#eagle-nav{left:50%;transform:translateX(-50%);white-space:nowrap;padding:3px}#eagle-nav button{background:transparent;border:0;color:inherit;min-height:36px;cursor:pointer}
+#measure-lines{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+#measure-lines line{stroke:#ffd875;stroke-width:2;paint-order:stroke;filter:drop-shadow(0 1px 1px #15261f)}
+#measure-lines text{font:600 12px system-ui;fill:white;stroke:#23372d;stroke-width:4;paint-order:stroke;stroke-linejoin:round;text-anchor:middle}
+#measure-info h3{margin:12px 0 4px;font-size:16px}#measure-info p,.measure-help{font-size:13px;margin:5px 0 10px;color:#44574b}
+#measure-info dl{margin:0 0 9px}#measure-info dl div{display:flex;justify-content:space-between;gap:10px;align-items:baseline;border-bottom:1px solid #dde0d5;padding:5px 0}#measure-info dd{margin:0;font-weight:650;text-align:right;font-variant-numeric:tabular-nums}
+#measure-list details{border-bottom:1px solid #dddcd1}#measure-list summary{cursor:pointer;padding:8px 0;font-weight:600}button.measure-item{display:block;width:100%;border:0;background:transparent;border-radius:5px;text-align:left;padding:6px 9px}.measure-item[aria-pressed=true]{background:#dce7d8;color:#203c30}
+@media(max-width:650px){.house-tools{top:auto;bottom:max(10px,env(safe-area-inset-bottom));left:8px}.house-tools button{min-height:40px;padding:0 8px}.house-panel,#house-remote{top:auto;bottom:calc(max(10px,env(safe-area-inset-bottom)) + 56px);left:8px;width:min(328px,calc(100vw - 16px));max-height:calc(100dvh - 174px)}#eagle-shortcut{left:auto;right:9px;bottom:max(12px,env(safe-area-inset-bottom))}#eagle-nav{bottom:64px;left:auto;right:9px;transform:none}#hint{bottom:67px}}
+@media(pointer:coarse){.remote-actions button{min-height:40px}}
+@media(prefers-reduced-motion:no-preference){.house-panel:not([hidden]),#house-remote:not([hidden]){animation:house-in .16s ease-out}@keyframes house-in{from{opacity:.1;transform:translateY(4px)}to{opacity:1;transform:none}}}
+#remote-message:not(:empty){margin-top:8px;line-height:1.4;font-size:12px;color:#405c4c}
+#measure-fold{margin-left:auto;margin-right:5px;background:transparent;border:1px solid #dcded5;border-radius:50%;width:32px;height:32px;font-size:18px}
+#measure-panel.folded{width:max-content;padding-bottom:0}#measure-panel.folded header{border:0;gap:6px}#measure-panel.folded>:not(header){display:none}
+.remote-actions.primary{background:transparent;padding:0;gap:6px}.remote-actions.primary button{background:#fffdf8;border:1px solid #bfc9be}
+#house-remote .remote-section:last-of-type{padding-bottom:0}.house-panel header,#house-remote header{background:#faf8f2}
 
-</style><canvas id="house" tabindex="0" aria-label="West Entry House, first-person three-dimensional walkthrough" aria-describedby="instructions"></canvas><div id="time-controls" role="group" aria-label="Time of day"><button type="button" aria-pressed="true">Day</button><button type="button" aria-pressed="false">Sunset</button><button type="button" aria-pressed="false">Evening</button><button type="button" aria-pressed="false">Night</button></div><label id="weather-control"><span>Weather</span><select id="weather-choice" aria-label="Weather"></select></label><button class="remote-launch" id="remote-launch" type="button" aria-expanded="false" aria-controls="house-remote">House remote</button>
+</style><canvas id="house" tabindex="0" aria-label="West Entry House, first-person three-dimensional walkthrough" aria-describedby="instructions"></canvas><div id="time-controls" role="group" aria-label="Time of day"><button type="button" aria-pressed="true">Day</button><button type="button" aria-pressed="false">Sunset</button><button type="button" aria-pressed="false">Evening</button><button type="button" aria-pressed="false">Night</button></div><label id="weather-control"><span>Weather</span><select id="weather-choice" aria-label="Weather"></select></label><div class="house-tools" role="group" aria-label="House tools">
+<button id="remote-launch" type="button" aria-expanded="false" aria-controls="house-remote"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7M5.5 10v10h13V10M10 20v-6h4v6"/></svg>House remote</button>
+<button id="measure-launch" type="button" aria-pressed="false" aria-controls="measure-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 15 12-12 6 6L9 21zM8 10l3 3m1-7 3 3"/></svg>Measurements</button>
+</div>
+<svg id="measure-lines" hidden aria-hidden="true"></svg>
+<section class="house-panel" id="measure-panel" hidden aria-labelledby="measure-title">
+<header><h2 id="measure-title">Measurements</h2><button id="measure-fold" aria-expanded="true" aria-label="Minimize measurements">&#8722;</button><button id="measure-close" aria-label="Close measurements">&times;</button></header>
+<p class="measure-help">Tap the house or choose an element below.</p>
+<div id="measure-info" aria-live="polite"></div>
+<input id="measure-search" type="search" aria-label="Find a measured element" placeholder="Find a room, wall or fixture">
+<div id="measure-list"></div></section>
 <section id="house-remote" hidden aria-labelledby="remote-title">
   <header><h2 id="remote-title">House remote</h2><button id="remote-close" type="button" aria-label="Close house remote">×</button></header>
   <div class="remote-section">
-    <h3>Whole exterior</h3>
+    <h3>Exterior access</h3>
     <div class="remote-actions primary"><button type="button" data-exterior="open">Open all</button><button type="button" data-exterior="close">Close all</button></div>
   </div>
   <div class="remote-section">
@@ -58,7 +82,7 @@
   <div class="remote-section"><label for="town-stop">Explore the house</label><select id="town-stop"><option value="home">Home lane</option><option value="temple">Upstairs prayer room</option><option value="garden">Kitchen garden</option></select>
     <div class="remote-actions"><button type="button" id="town-go">Visit</button><button type="button" id="town-eagle" aria-pressed="false">Eagle Eye</button><button type="button" id="town-view" aria-pressed="false">Third person</button></div></div>
   <div class="remote-section"><label for="town-volume">Street sound <span id="town-level">80%</span></label><div class="remote-actions"><button id="town-sound" type="button" aria-pressed="false">Sound off</button><input id="town-volume" type="range" min="0" max="100" value="80"></div></div>
-  <div role="status" id="remote-message" class="sr"></div>
+  <div role="status" id="remote-message" ></div>
 </section>
 <button type="button" id="eagle-shortcut" aria-keyshortcuts="B">Eagle Eye</button><div id="eagle-nav" hidden><button id="eagle-back">Back to walk</button><button id="eagle-land">Walk here</button><button id="eagle-plus" aria-label="Fly lower">+</button><button id="eagle-minus" aria-label="Fly higher">−</button></div>
 <p id="hint" aria-hidden="true"></p><p class="sr" id="instructions">Walk in Pulhat with W A S D, hold Shift to jog outdoors, or press V for a third-person view. B opens Eagle Eye. Move with W A S D and use the mouse wheel or plus and minus to change altitude. Walk with W A S D, or use up and down arrows. Drag to look, or use left and right arrows to turn. On a touchscreen drag on the left half to walk and on the right half to look. Open House remote, or press M, to operate the whole exterior and lights from any room. Use Gates and garage for the side-sliding garage shutter. Use Show rods or Hide rods to compare the window grilles. Tap a side gate or its brass plate, or aim at it and press Space.</p>
@@ -763,21 +787,22 @@ let lastLighting=-1;
 const directions=[[-.59,.47,.66],[-.98,-.17,.108],[-.99,-.08,.047],[.82,-.30,.49]];
 const skyRows=[[[222,230,223],[126,165,192]],[[244,167,130],[83,108,148]],[[141,115,136],[36,54,95]],[[40,46,62],[10,17,34]]];
 function applyLighting(mode,weather,lampMode){
-    const [cover,,wet]=weather.air,key=mode+384*lampMode+4*Math.round(cover*4)+24*Math.round(wet*3)+96*Math.round(weather.sky[1]);
+    const cover=Math.round(weather.air[0]*32)/32,wet=Math.round(weather.air[2]*32)/32,snowCover=Math.round(weather.sky[1]*32)/32;
+    const key=[mode,lampMode,cover,wet,snowCover].join('/');
     if(key===lastLighting)return;lastLighting=key;
     const env=[[.81,.88,.95],[.50,.43,.47],[.16,.20,.36],[.035,.057,.112]][mode];
     const beam=[[1.24,1.06,.85],[1.65,.70,.30],[.08,.06,.075],[.015,.025,.049]][mode];
     const sun=directions[mode],lamps=lampMode===2?0:lampMode===1?1:Math.min(1,[0,.42,.98,1][mode]+cover*.35);
     for(let i=0;i<c.length;i+=3){
         const x=p[i],y=p[i+1],z=p[i+2],floor=z>10.54?10.1:0;
-        const inside=x>.20&&x<31.93&&y>.16&&y<37.84&&z<20.62&&!(floor&&x<2.58&&(y<11.5||y>26.));
+        const inside=x>.20&&x<28.70&&y>.16&&y<37.84&&z<20.62&&!(floor&&x<2.58&&(y<11.5||y>26.));
         const cosine=Math.max(0,n[i]*sun[0]+n[i+1]*sun[1]+n[i+2]*sun[2]);
         let lamp=0;
         if(inside){
             const lx=y>26?(x>20.5?26:x<11.5?6:15):y<15.5&&x>23?26.5:y<11.5?8:Math.min(28,Math.max(4,x<19?16:x));
             const ly=y>26?31.5:y<15.5&&x>23?7:y<11.5?5.5:19.5;
             lamp=.26+1.1/(1+((x-lx)**2+(y-ly)**2+(z-floor-8.7)**2)*.053);
-        }else if(z>20.43&&x>-.5&&x<32.28&&y>-.27&&y<38.28){
+        }else if(z>20.43&&x>-.5&&x<29.05&&y>-.27&&y<38.28){
             const well=x<13.82&&y>11.44&&y<19.61;
             const lx=well?8.2:y>25?22.6:y<10?7.8:x>23?31.7:10.25;
             const ly=well?17.9:y>25?37.7:y<10?.25:x>23?15.3:19.81;
@@ -797,7 +822,7 @@ function applyLighting(mode,weather,lampMode){
             let value=255*c[i+j]*Math.pow(incoming,.455);
             if(!inside&&n[i+2]>.65&&wet>.12&&(z>20.81||x< -1.48)){
                 value=value*(1-.11*wet)+[15,19,23][j]*wet*[1,.8,.4,.22][mode];
-                value+=weather.sky[1]*Math.max(0,215*[1,.8,.4,.22][mode]-value)*.73;
+                value+=snowCover*Math.max(0,215*[1,.8,.4,.22][mode]-value)*.73;
             }
             col[i+j]=value;
         }
@@ -851,10 +876,12 @@ if(weather.air[1]>.01){
     }
 }
 if(weather.amount>.01){
-    const time=weather.sky[2],wind=weather.air[3],snow=weather.kind==='snow',ice=weather.kind==='hail',field=45;
+    const time=weather.sky[2],wind=weather.air[3],travel=weather.windTravel??time*wind,field=45;
     const mod=(v,b)=>((v%b)+b)%b;
-    for(let i=0;i<800*weather.amount;i++){
-        const x=ex-22.5+mod(i*13.873+time*wind*2.4-ex,field),y=ey-22.5+mod(i*19.843-time*wind*.99-ey,field);
+    for(const [type,density] of (weather.particles||precipKinds.map(k=>k===weather.kind?weather.amount:0)).entries()){
+      const snow=type===2,ice=type===1;
+      for(let i=0;i<800*density;i++){
+        const x=ex-22.5+mod(i*13.873+travel*2.4-ex,field),y=ey-22.5+mod(i*19.843-travel*.99-ey,field);
         const z=ez-15+mod(i*7.362-time*(snow?2.8:ice?18:26)-ez,36);
         if(z<.1||underWeatherCover(x,y,z))continue;
         const dx=x-ex,dy=y-ey,dz=z-ez,along=ca*dx+sa*dy,fwd=cb*along+sb*dz;
@@ -867,6 +894,7 @@ if(weather.amount>.01){
             for(let c=0;c<3;c++)out[4*id+c]+=(155+12*c+40*(mode===0)-out[4*id+c])*(snow?.68:.42);
         }
     }
+}
 }
 return out}return {frame}}
 
@@ -965,6 +993,7 @@ solarBasis(0);
 const timeSkyShader=`uniform vec4 lightMix;
 uniform vec3 solarDirection;
 uniform vec4 weatherAir,weatherSky;
+uniform float windTravel;
 float cloudGrain(vec2 p){
     vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
     vec4 v=fract(sin(vec4(dot(i,vec2(17.1,64.7)))+vec4(0.,17.1,64.7,81.8))*43137.83);
@@ -994,7 +1023,7 @@ vec3 skyAtTime(vec3 d,vec3 photographed){
     vec3 c=photographed*lightMix.x+sunset*lightMix.y+evening*lightMix.z+night*lightMix.w;
     if(weatherAir.x+weatherAir.y<.004)return c;
     float timeLight=dot(lightMix,vec4(1.,.78,.40,.19));
-    vec2 q=d.xy/(.18+max(0.,d.z))*2.3+vec2(weatherSky.z*.011*weatherAir.w,weatherSky.z*.004*weatherAir.w);
+    vec2 q=d.xy/(.18+max(0.,d.z))*2.3+vec2(windTravel*.011,windTravel*.004);
     float mass=.56*cloudGrain(q)+.27*cloudGrain(q*2.15+17.)+.12*cloudGrain(q*4.5-9.)+.05*cloudGrain(q*9.);
     float veil=smoothstep(.71-weatherAir.x*.68,.92-weatherAir.x*.67,mass)*min(1.,weatherAir.x*1.8);
     vec3 rainCloud=mix(vec3(.28,.32,.37),vec3(.76,.79,.80),mass+.12*h)*timeLight;
@@ -1085,13 +1114,13 @@ vec3 lightAtTime(vec3 ambient,float direct,vec3 n){
 float shelteredLength(vec3 start,vec3 end){
     vec3 ray=end-start;float full=length(ray);
     vec3 iv=1./(mix(vec3(-1.),vec3(1.),step(vec3(0.),ray))*max(abs(ray),vec3(.0001)));
-    vec3 a=(vec3(-.05,0.,.1)-start)*iv,b=(vec3(32.,38.,20.85)-start)*iv;
+    vec3 a=(vec3(-.05,0.,.1)-start)*iv,b=(vec3(28.75,38.,20.85)-start)*iv;
     vec3 lo=min(a,b),hi=max(a,b);
     return full*max(0.,min(1.,min(hi.x,min(hi.y,hi.z)))-max(0.,max(lo.x,max(lo.y,lo.z))));
 }
 vec3 weatherFinish(vec3 color,vec3 n){
     if(weatherAir.x+weatherAir.y+weatherAir.z<.004)return color;
-    bool inHouse=W.x>-1.48&&W.x<32.30&&W.y>-.27&&W.y<38.27&&W.z<20.81;
+    bool inHouse=W.x>-1.48&&W.x<29.05&&W.y>-.27&&W.y<38.27&&W.z<20.81;
     bool inStairRoom=W.x>.04&&W.x<13.95&&W.y>11.38&&W.y<19.71&&W.z<29.25;
     bool outside=!(inHouse||inStairRoom);
     float lightLevel=dot(lightMix,vec4(1.,.80,.43,.23));
@@ -1173,7 +1202,7 @@ function securityTransform(program,motion,open){
         gl.uniform1f(loc(program,'ext'),(open[motion.slot]||0)*motion.scale);
     }
 }
-function weatherUniforms(program){gl.uniform1f(loc(program,'lampOverride'),lampMode);gl.uniform4fv(loc(program,'weatherAir'),climate.air);gl.uniform4fv(loc(program,'weatherSky'),climate.sky);}
+function weatherUniforms(program){gl.uniform1f(loc(program,'windTravel'),climate.windTravel||0);gl.uniform1f(loc(program,'lampOverride'),lampMode);gl.uniform4fv(loc(program,'weatherAir'),climate.air);gl.uniform4fv(loc(program,'weatherSky'),climate.sky);}
 let activeMotion=false;const lodRanges=D.lodGroups;
 if(indexed){const low=new Uint32Array(decodeMeshBytes(D.lod).buffer),data=new Uint32Array(indexData.length+low.length);data.set(indexData);data.set(low,indexData.length);const ib=gl.createBuffer();gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,ib);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,data,gl.STATIC_DRAW)}
 function draw(st,len){if(indexed&&activeMotion&&lodRanges[st]){const range=lodRanges[st];st=indexData.length+range[0];len=range[1]}if(indexed)gl.drawElements(gl.TRIANGLES,len,gl.UNSIGNED_INT,st*4);else gl.drawArrays(gl.TRIANGLES,st,len)}
@@ -1366,14 +1395,14 @@ const drops=shaderProgram(`
 attribute vec4 seed;
 uniform vec3 eye,dir,rt,up;
 uniform vec2 lens;
-uniform float shift,clock,wind,type,density;
+uniform float shift,clock,wind,travel,type,density;
 varying vec3 world;
 varying float fade;
 void main(){
     bool frozen=type>1.5,ice=type>.5&&type<1.5;
     float speed=frozen?2.8:ice?18.:25.+7.*seed.z;
     float field=52.,height=44.;
-    vec2 drift=clock*wind*(frozen?.87:3.1)*vec2(.78,-.39);
+    vec2 drift=travel*(frozen?.87:3.1)*vec2(.78,-.39);
     if(frozen)drift+=vec2(sin(clock*.96+seed.x*30.),cos(clock*.63+seed.y*28.))*.57;
     vec2 xy=mod(seed.xy*field+drift-eye.xy+field*.5,field)+eye.xy-field*.5;
     float z=mod(seed.z*height-clock*speed-eye.z+height*.45,height)+eye.z-height*.45;
@@ -1389,7 +1418,7 @@ uniform float type,daylight;
 varying vec3 world;varying float fade;
 void main(){
     if(world.z<.09||fade<.035)discard;
-    if(world.x>-1.48&&world.x<32.30&&world.y>-.27&&world.y<38.27&&world.z<20.92)discard;
+    if(world.x>-1.48&&world.x<29.05&&world.y>-.27&&world.y<38.27&&world.z<20.92)discard;
     if(world.x>.04&&world.x<13.95&&world.y>11.38&&world.y<19.71&&world.z<29.25)discard;
     vec3 tint=type>.5?vec3(.85,.88,.91):vec3(.73,.81,.87);
     float opacity=type>.5?.73:.36;
@@ -1397,17 +1426,21 @@ void main(){
     gl_FragColor=vec4(tint*(.50+.5*daylight),fade*opacity);
 }`);
 function drawWeather(eye,dir,rt,up,lens){
-    const type=climate.kind==='snow'?2:climate.kind==='hail'?1:0;
-    const count=Math.floor(weatherCount*climate.amount);
+    const amounts=climate.particles||precipKinds.map(k=>k===(climate.kind==='storm'?'rain':climate.kind)?climate.amount:0);
     gl.useProgram(drops);for(let i=0;i<4;i++)gl.disableVertexAttribArray(i);
     const a=attribute(drops,'seed');gl.bindBuffer(gl.ARRAY_BUFFER,dropsBuffer);gl.enableVertexAttribArray(a);
-    gl.vertexAttribPointer(a,4,gl.FLOAT,false,type?32:16,0);
+
     cam(drops,dir,rt,up,lens);gl.uniform3fv(loc(drops,'eye'),eye);
     gl.uniform1f(loc(drops,'clock'),climate.sky[2]);gl.uniform1f(loc(drops,'wind'),climate.air[3]);
-    gl.uniform1f(loc(drops,'type'),type);gl.uniform1f(loc(drops,'density'),climate.amount);
+    gl.uniform1f(loc(drops,'travel'),climate.windTravel??0);gl.uniform1f(loc(drops,'density'),climate.amount);
     gl.uniform1f(loc(drops,'daylight'),lightMix[0]+.70*lightMix[1]+.23*lightMix[2]+.08*lightMix[3]);
     gl.enable(gl.DEPTH_TEST);gl.depthMask(false);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
-    gl.drawArrays(type?gl.POINTS:gl.LINES,0,type?count:count*2);
+    for(let type=0;type<amounts.length;type++){
+        const count=Math.floor(weatherCount*amounts[type]);if(!count)continue;
+        gl.uniform1f(loc(drops,'type'),type);
+        gl.vertexAttribPointer(a,4,gl.FLOAT,false,type?32:16,0);
+        gl.drawArrays(type?gl.POINTS:gl.LINES,0,type?count:count*2);
+    }
     gl.disable(gl.BLEND);gl.depthMask(true);
 }
 
@@ -1522,36 +1555,47 @@ for(const [key,name] of climates)weatherSelect.add(new Option(name,key));
 let weatherChoice=climates[0];
 try{weatherChoice=climates.find(c=>c[0]===localStorage.getItem('west-entry-weather-v1'))||weatherChoice}catch(e){}
 weatherSelect.value=weatherChoice[0];
-let weatherMix=weatherChoice.slice(2,9),weatherClock=12;
-function sceneWeather(preset,clock=12,amounts=preset.slice(2,9)){
+const precipKinds=['rain','hail','snow'];
+function weatherValues(preset){
+    const kind=preset[9]==='storm'?'rain':preset[9];
+    return [...preset.slice(2,9),...precipKinds.map(k=>k===kind?preset[8]:0),Number(preset[9]==='storm')];
+}
+let weatherMix=weatherValues(weatherChoice),weatherClock=12,windTravel=0,weatherTransition=null;
+function sceneWeather(preset,clock=12,amounts=weatherValues(preset)){
     const t=clock%13.5;
-    // A single slow distant brightening avoids a strobe. Reduced motion freezes it.
-    const lightning=preset[9]==='storm'&&!reduce&&t>8.4&&t<10.2?.22*Math.sin((t-8.4)*Math.PI/1.8)**2:0;
-    return {air:amounts.slice(0,4),sky:[amounts[4],amounts[5],clock,lightning],amount:amounts[6],kind:preset[9]};
+    const lightning=!reduce&&t>8.4&&t<10.2?.22*amounts[10]*Math.sin((t-8.4)*Math.PI/1.8)**2:0;
+    return {air:amounts.slice(0,4),sky:[amounts[4],amounts[5],clock,lightning],amount:amounts[6],
+        particles:amounts.slice(7,10),windTravel,kind:preset[9]};
+}
+function sampleWeather(now){
+    if(!weatherTransition)return false;
+    const {start,from,to}=weatherTransition;
+    const t=reduce?1:Math.min(1,Math.max(0,(now-start)/1250));
+    const blend=t*t*(3-2*t);
+    weatherMix=t===1?to:from.map((v,i)=>v+(to[i]-v)*blend);
+    if(t===1)weatherTransition=null;
+    return true;
 }
 function chooseWeather(value){
     const preset=climates.find(c=>c[0]===value);
     if(!preset||preset===weatherChoice)return;
+    const start=performance.now();
+    sampleWeather(start);
+    weatherTransition={start,from:weatherMix.slice(),to:weatherValues(preset)};
     weatherChoice=preset;weatherSelect.value=preset[0];dismiss();
     try{localStorage.setItem('west-entry-weather-v1',preset[0])}catch(e){}
     request();
 }
 weatherSelect.addEventListener('change',()=>{chooseWeather(weatherSelect.value);cvs.focus({preventScroll:true})});
-function stepWeather(dt){
-    let fading=false;
-    const ease=reduce?1:1-Math.exp(-dt*4.5);
-    for(let i=0;i<7;i++){
-        weatherMix[i]+=(weatherChoice[i+2]-weatherMix[i])*ease;
-        if(Math.abs(weatherMix[i]-weatherChoice[i+2])<.003)weatherMix[i]=weatherChoice[i+2];
-        else fading=true;
-    }
-    const animated=!reduce&&(weatherChoice[0]==='windy'||weatherChoice[0]==='partly-cloudy'||weatherMix[6]>.015);
-    if(animated)weatherClock=(weatherClock+dt)%5400;
+function stepWeather(dt,now=performance.now()){
+    const changed=sampleWeather(now);
+    const animated=!reduce&&(weatherChoice[0]==='windy'||weatherChoice[0]==='partly-cloudy'||weatherMix[6]>.005);
+    if(animated||(!reduce&&changed)){weatherClock+=dt;windTravel+=dt*weatherMix[3]}
     state.weather=sceneWeather(weatherChoice,weatherClock,weatherMix);
-    return {fading,animated};
+    return {changed,fading:!!weatherTransition,animated};
 }
 function underWeatherCover(x,y,z){
-    if(x>-1.48&&x<32.30&&y>-.27&&y<38.27&&z<20.87)return true;
+    if(x>-1.48&&x<29.05&&y>-.27&&y<38.27&&z<20.92)return true;
     return x>.04&&x<13.95&&y>11.38&&y<19.71&&z<29.25;
 }
 
@@ -1673,6 +1717,7 @@ function updateRemote(){
     for(const el of remotePanel.querySelectorAll('[data-lamp]'))el.setAttribute('aria-pressed',String(Number(el.dataset.lamp)===state.lampMode));
 }
 function showRemote(open){
+    if(open && !measurePanel.hidden)showMeasurements(false);
     remotePanel.hidden=!open;remoteLaunch.setAttribute('aria-expanded',String(open));resetInput();
     if(open){dismiss();updateRemote();document.getElementById('remote-close').focus({preventScroll:true})}
     else{cvs.focus({preventScroll:true})}
@@ -1789,6 +1834,286 @@ const townAudio=makeTownAudio();
 
 function placeTemple(){state.p=[rearX(25.50),18.85,foot(rearX(25.5),18.85,1)+EYE];state.level=1;state.a=[Math.PI/2,-.035];target=state.a.slice();oldFloor=state.p[2];state.o=openings(...state.p);manualLook=true;approachCompleted=true;}
 
+const measurePanel=document.getElementById('measure-panel'),measureSearch=document.getElementById('measure-search');
+const measureLaunch=document.getElementById('measure-launch'),measureLines=document.getElementById('measure-lines');
+const measureInfo=document.getElementById('measure-info'),measureList=document.getElementById('measure-list');
+const measureEntries=[],measureGroups=[],measureSolids=[],measureFloors=[];
+let measureMesh,measureSelected,measureCameraKey='';
+const measureNum=n=>Number(n.toFixed(3)).toLocaleString('en-US',{maximumFractionDigits:3});
+const inFeet=n=>measureNum(n)+' ft',inArea=n=>measureNum(n)+' sq ft';
+const rectPlan=(x,y,X,Y)=>[[x,y],[X,y],[X,Y],[x,Y]];
+function planArea(poly){return Math.abs(poly.reduce((s,[x,y],i)=>{const [X,Y]=poly[(i+1)%poly.length];return s+x*Y-X*y},0))/2}
+function insidePlan(x,y,poly){
+    let inside=false;
+    for(let i=0,j=poly.length-1;i<poly.length;j=i++){
+        const [a,b]=poly[i],[A,B]=poly[j];
+        if((b>y)!==(B>y)&&x<(A-a)*(y-b)/(B-b)+a)inside=!inside;
+    }return inside;
+}
+function measured(title,section,rows,note,lines=[]){
+    const item={title,section,rows,note,lines,id:measureEntries.length};measureEntries.push(item);return item;
+}
+function measurePlan(title,section,poly,z,note,extra=[],pick=false){
+    const edges=poly.map(([x,y],i)=>[[x,y,z],[...poly[(i+1)%poly.length],z]]);
+    const xs=poly.map(p=>p[0]),ys=poly.map(p=>p[1]),dx=Math.max(...xs)-Math.min(...xs),dy=Math.max(...ys)-Math.min(...ys);
+    const rows=[['East–west span',inFeet(dx)],['North–south span',inFeet(dy)],['Plan area',inArea(planArea(poly))],...extra];
+    const formula=poly.length===4?measureNum(dx)+' × '+measureNum(dy)+' ft.':'Area follows the outlined polygon, including its recesses.';
+    const item=measured(title,section,rows,note+' '+formula,edges);
+    if(pick)measureFloors.push({poly,z,item});return item;
+}
+function prepareMeasures(){
+    if(measureEntries.length)return;
+    const section='Site & floor plans',east=walls[0].find(w=>w[0]==='y'&&w[5]&&w[1]>20)[1],north=38;
+    const area0=east*north,area1=area0-2.5*(11.5+12);
+    measured('House overview',section,[['Original design grid','32 × 38 ft'],['Original nominal floor plate','1,216 sq ft'],
+        ['Ground floor · wall centre lines',inArea(area0)],['Upper enclosed · wall centre lines',inArea(area1)],
+        ['Both enclosed floor plates',inArea(area0+area1)],['West access lane','10 ft'],['Rear garden depth','6 ft'],['Front grid setback','4 ft'],['South / north grid setbacks','3 / 3.416 ft'],['Entry floor above road','2.5 ft']],
+        'Floor plates include walls and the stairwell. Upper balconies and the roof terrace are outside the enclosed total.');
+    measurePlan('Plot · design rectangle',section,rectPlan(-4,-3,35,41.416),-1.84,
+        'The concept plan uses a rectangular 39 ft depth. The sketch records about 39 ft south and 39 ft 8 in north. Frontage is approximately 44 ft 5 in.');
+    measurePlan('Ground floor · enclosed grid',section,rectPlan(0,0,east,north),FLOOR,'Measured between exterior wall centre lines.');
+    measurePlan('Upper floor · enclosed grid',section,[[2.5,0],[east,0],[east,38],[2.5,38],[2.5,26],[0,26],[0,11.5],[2.5,11.5]],FLOOR+RISE,'Both recessed balconies are excluded.');
+    measurePlan('Roof terrace · grid',section,rectPlan(0,0,east,north),FLOOR+2*RISE,'Roof grid projection includes the stair enclosure.');
+    measurePlan('Kitchen garden',section,rectPlan(29,0,35,38),.075,'Full rear strip from house face to boundary, including the kitchen path.',[],true);
+    measured('Garage ramp',section,[['Rise',inFeet(2.5)],['Horizontal run',inFeet(16.7)],['Gradient',measureNum(100*2.5/16.7)+'%'],['Sloping length',inFeet(Math.hypot(16.7,2.5))]],
+        'Gradient = rise ÷ horizontal run × 100.',[[[-4,5.75,-1.84],[12.7,5.75,.66]],[[-4,5.75,-1.84],[12.7,5.75,-1.84]],[[12.7,5.75,-1.84],[12.7,5.75,.66]]]);
+    const aperture={glass:[.13,8.1],guarded:[.13,8.1],high:[5.6,8.15],opening:[0,8.5],door:[0,7.5],bay:[0,8]};
+    for(let f=0;f<2;f++){
+        const floor=f?'Upstairs':'Ground',rooms=floor+' rooms',z=FLOOR+f*RISE,west=f?2.5:0;
+        function room(name,poly,clear){
+            const extra=clear?[['Inside-face floor area',inArea(planArea(clear))]]:[];
+            const r=measurePlan(name,rooms,poly,z,'Plan area uses wall centre lines. '+(clear?'Inside-face area follows the finished wall and fitted wardrobe outline.':'Open zones use the indicated boundaries.'),extra,true);
+            if(clear)r.lines=clear.map(([x,y],i)=>[[x,y,z+.025],[...clear[(i+1)%clear.length],z+.025]]);
+        }
+        // The bedroom lining tapers over 0.78 ft at each end of the built-in.
+        function wardrobeEdge(lo,hi,start,end,y,direction){
+            return [start,lo+.78,hi-.78,end].map(x=>{
+                const depth=.27+1.51*Math.min(1,(x-lo)/.78,(hi-x)/.78);
+                return [x,y+direction*depth];
+            });
+        }
+        function northRoom(lo,hi,left,right){
+            return [[left,26.17],[right,26.17],...wardrobeEdge(lo,hi,left,right,38,-1).reverse()];
+        }
+        const innerEast=rearX(31.75);
+        room('Northwest bedroom',rectPlan(west,26,11.5,38),northRoom(west,11.5,west+.25,11.33));room('Northeast bedroom',rectPlan(20.5,26,east,38),northRoom(20.5,east,20.67,innerEast));
+        room('Southeast bedroom',[[16.4,0],[east,0],[east,15.5],[23,15.5],[23,5],[16.4,5]],[...wardrobeEdge(16.4,east,16.57,innerEast,0,1),[innerEast,15.33],[rearX(23.17),15.33],[rearX(23.17),4.83],[16.57,4.83]]);
+        room(f?'Family lounge':'Garage bay',rectPlan(west,0,16.4,11.5),rectPlan(west+.25,.25,16.23,11.33));
+        room(f?'Prayer area':'Kitchen area',rectPlan(23,15.5,east,26));
+        room('Dining and entrance zone',[[0,19.5],[10.25,19.5],[10.25,11.5],[16.4,11.5],[16.4,12],[23,12],[23,26],[0,26]]);
+        room('Bedroom hallway',rectPlan(11.5,26,20.5,30.5));
+        for(const bath of fittings.baths){
+            const [x,y]=bath.origin,[a,b]=bath.axes;
+            const X=rearX(x+a*bath.width),Y=y+b*bath.depth;
+            measurePlan(bath.name,rooms,rectPlan(Math.min(rearX(x),X),Math.min(y,Y),Math.max(rearX(x),X),Math.max(y,Y)),z,
+                'Fitted bathroom layout, measured inside the enclosure.',[],true);
+        }
+        room('Stair hall',rectPlan(0,11.5,10.25,19.5));
+        if(f)for(const [n,y,Y] of [['Lounge balcony',0,11.5],['Bedroom balcony',26,38]])room(n,rectPlan(-1.5,y,2.5,Y));
+        measured('Stairs to '+(f?'roof':'upper floor'),rooms,[['Floor-to-floor rise',inFeet(RISE)],['Risers','16'],['Rise per step',inFeet(RISE/16)],['Tread run',inFeet(.9)]],
+            'Two flights with a half landing. Riser height = floor rise ÷ 16.',[[[3.75,15.5,z],[3.75,15.5,z+RISE]]]);
+        for(const [i,[axis,k,lo,hi,openings,ext]] of walls[f].entries()){
+            const point=(s,h)=>axis==='x'?[s,k,z+h]:[k,s,z+h],plane=axis==='x'?1:0;
+            const name=(ext?'Exterior wall ':'Partition ')+(i+1),where=floor+' walls & openings';
+            const cut= openings.reduce((v,[a,b,kind])=>{const [s,h]=aperture[kind];return v+(b-a)*(h-s)},0);
+            const area=(hi-lo)*9.55;
+            const row=measured(name,where,[['Span',inFeet(hi-lo)],['Height',inFeet(9.55)],['Gross face',inArea(area)],['Opening area',inArea(cut)],['Net face',inArea(area-cut)]],
+                'One face of the layout wall. Net = span × height minus its scheduled openings.',[[point(lo,0),point(hi,0)],[point(hi,0),point(hi,9.55)]]);
+            const parts=openings.map(([a,b,kind],j)=>{
+                const [s,h]=aperture[kind];
+                const title=({bay:'Garage opening',door:'Doorway',high:'High window',guarded:'Window',glass:'Glazing',opening:'Passage'})[kind];
+                const item=measured(title+' · '+(i+1)+'.'+(j+1),where,[['Opening width',inFeet(b-a)],['Opening height',inFeet(h-s)],['Sill above floor',inFeet(s)],['Face area',inArea((b-a)*(h-s))]],
+                    'Layout opening between jambs, before frames and tracks.',[[point(a,s),point(b,s)],[point(b,s),point(b,h)]]);
+                return {a,b,s,h,item};
+            });
+            measureSolids.push({plane,k,lo,hi,z,row,parts});
+        }
+    }
+    prepareMeshMeasures();
+}
+function decodedMeasureArray(data,Ctor){
+    const raw=atob(data),bytes=new Uint8Array(raw.length);
+    for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);
+    return new Ctor(bytes.buffer);
+}
+function prepareMeshMeasures(){
+    const pos=decodedMeasureArray(D.p,Int16Array),idx=decodedMeasureArray(D.indices,Uint32Array);
+    measureMesh={pos,idx};
+    for(const [name,start,count] of D.groups){
+        if(/^(Site|Surroundings|Context)(?:$| )/.test(name))continue;
+        const low=[Infinity,Infinity,Infinity],high=[-Infinity,-Infinity,-Infinity];
+        for(let j=start;j<start+count;j++){
+            const p=3*idx[j];for(let a=0;a<3;a++){const v=pos[p+a]/128;if(v<low[a])low[a]=v;if(v>high[a])high[a]=v}
+        }
+        const [x,y,z]=low,[X,Y,Z]=high,dx=X-x,dy=Y-y,dz=Z-z;
+        const parts=name.split(' / '),title=/^Swing /.test(parts[1]||'')?'Hinged door at '+parts[1].split(' ').slice(1,3).join(', ')+' ft':parts.slice(1).join(' · ')||parts[0];
+        const item=measured(title,parts[0]+' · model parts',[['East–west extent',inFeet(dx)],['North–south extent',inFeet(dy)],['Vertical extent',inFeet(dz)]],
+            'Overall extents of this named mesh in its modelled resting position. Groups can contain several pieces.',[[low,[X,y,z]],[low,[x,Y,z]],[low,[x,y,Z]]]);
+        const group={low,high,start,count,item,name,motion:movingPart(name,walls)};item.meshGroup=group;measureGroups.push(group);
+    }
+}
+function measureElement(tag,text,parent){
+    const el=document.createElement(tag);if(text!==null)el.textContent=text;if(parent)parent.append(el);return el;
+}
+function showMeasureItem(item){
+    measureSelected=item;measureCameraKey='';measureInfo.replaceChildren();
+    measureElement('h3',item.title,measureInfo);const dl=measureElement('dl',null,measureInfo);
+    for(const [key,value] of item.rows){const r=measureElement('div',null,dl);measureElement('dt',key,r);measureElement('dd',value,r)}
+    measureElement('p',item.note,measureInfo);
+    for(const b of measureList.querySelectorAll('.measure-item'))b.setAttribute('aria-pressed',String(Number(b.value)===item.id));
+    measurePanel.scrollTop=0;request();
+}
+function listMeasurements(){
+    measureList.replaceChildren();const groups=new Map(),q=measureSearch.value.trim().toLowerCase();
+    for(const item of measureEntries){
+        if(!(item.title+' '+item.section).toLowerCase().includes(q))continue;
+        let group=groups.get(item.section);
+        if(!group){group=measureElement('details',null,measureList);measureElement('summary',item.section,group);groups.set(item.section,group);if(q)group.open=true}
+        const b=measureElement('button',item.title,group);b.className='measure-item';b.value=item.id;b.setAttribute('aria-pressed',String(item===measureSelected));
+    }
+    if(!groups.size)measureElement('p','No matching elements.',measureList);
+}
+function showMeasurements(open){
+    if(open&&!remotePanel.hidden)showRemote(false);
+    measurePanel.hidden=!open;measureLines.toggleAttribute("hidden",!open);measureLaunch.setAttribute('aria-pressed',String(open));
+    resetInput();
+    if(open){prepareMeasures();dismiss();listMeasurements();showMeasureItem(measureSelected||measureEntries[0]);document.getElementById('measure-close').focus()}
+    else{measureLines.replaceChildren();measureCameraKey='';cvs.focus({preventScroll:true})}
+    request();
+}
+measureLaunch.onclick=()=>showMeasurements(measurePanel.hidden);
+const measureFold=document.getElementById('measure-fold');
+measureFold.onclick=()=>{
+    const folded=measurePanel.classList.toggle('folded');
+    measureFold.textContent=folded?'+':'−';measureFold.setAttribute('aria-expanded',String(!folded));
+    measureFold.setAttribute('aria-label',folded?'Expand measurements':'Minimize measurements');
+};
+document.getElementById('measure-close').onclick=()=>showMeasurements(false);
+measureSearch.oninput=listMeasurements;
+measureList.onclick=e=>{const b=e.target.closest('.measure-item');if(b)showMeasureItem(measureEntries[Number(b.value)])};
+function measureView(c){
+    const w=cvs.clientWidth,h=cvs.clientHeight,[a,b]=c.a,ca=Math.cos(a),sa=Math.sin(a);
+    const level=accelerated?Math.max(0,Math.min(1,(-c.p[0]-2)/8))*Math.max(0,1-Math.abs(b-.36)/.77)*Math.max(0,ca):0;
+    const pitch=b*(1-.82*level),cb=Math.cos(pitch),sb=Math.sin(pitch),f=1/Math.tan(c.fov*Math.PI/360);
+    return {w,h,f,shift:Math.tan(b-pitch),eye:c.p,dir:[ca*cb,sa*cb,sb],right:[sa,-ca,0],up:[-ca*sb,-sa*sb,cb]};
+}
+const dotMeasure=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
+function movingMeasurePoint(g,p){
+    const m=g.motion,t=(state.o[m.slot]||0)*(m.scale||0);
+    let [x,y,z]=p;
+    if(m.part===3){
+        const path=y+10.55*t,b=Math.min(Math.PI/2,Math.max(0,(path-10)/.65));
+        return [x+.65*(1-Math.cos(b))+Math.max(0,path-11.021),Math.min(path,10)+.65*Math.sin(b),z];
+    }
+    if(m.part===10)return [x-2.30*(state.meterPosition||0),y,z];
+    if([2,4,5,7].includes(m.part))return [x,y+t*({2:-3.40,4:4.8,5:5.05,7:1})[m.part],z];
+    let angle,hinge,shift=0;
+    if(m.part===9){const side=sidePose(m.slot,state.sideGates[m.slot]);hinge=[m.side.x,m.side.y];angle=side.angle;shift=side.shift}
+    else if(m.part===6){angle=t;hinge=m.hinge}
+    else if(m.part===1){angle=-t*1.53;hinge=[0,19.96]}
+    else return p;
+    const a=x-hinge[0],b=y-hinge[1],cs=Math.cos(angle),sn=Math.sin(angle);
+    return [hinge[0]+a*cs-b*sn+shift,hinge[1]+a*sn+b*cs,z];
+}
+function drawMeasurement(c){
+    const mover=measureSelected?.meshGroup?.motion.part?measureSelected.meshGroup:null;
+    const key=[measureSelected?.id,...(mover?[...state.o,...state.sideGates,state.meterPosition]:[]),...c.p,...c.a,c.fov,cvs.clientWidth,cvs.clientHeight].join('/');
+    if(key===measureCameraKey)return;measureCameraKey=key;measureLines.replaceChildren();
+    const v=measureView(c);
+    function svg(tag,attrs){const el=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const k in attrs)el.setAttribute(k,attrs[k]);measureLines.append(el);return el}
+    for(const [p,q] of measureSelected?.lines||[]){
+        const len=Math.hypot(...q.map((n,i)=>n-p[i]));if(len<.02)continue;
+        let [a,b]=[p,q].map(t=>{const delta=(mover?movingMeasurePoint(mover,t):t).map((n,i)=>n-v.eye[i]);return [dotMeasure(delta,v.right),dotMeasure(delta,v.up),dotMeasure(delta,v.dir)]});
+        if(a[2]<.15&&b[2]<.15)continue;
+        if(a[2]<.15||b[2]<.15){const back=a[2]<.15?a:b,front=back===a?b:a,t=(.15-back[2])/(front[2]-back[2]);for(let i=0;i<3;i++)back[i]+=(front[i]-back[i])*t}
+        const [[x1,y1],[x2,y2]]=[a,b].map(([x,y,z])=>[v.w/2+x*v.h*v.f/(2*z),v.h/2-(y/z-v.shift)*v.h*v.f/2]);
+        svg('line',{x1,y1,x2,y2});if(Math.hypot(x2-x1,y2-y1)>36)svg('text',{x:(x1+x2)/2,y:(y1+y2)/2-5}).textContent=inFeet(len);
+    }
+}
+function rayGroupDistance(origin,ray,g){
+    let near=0,far=Infinity;
+    for(let a=0;a<3;a++){
+        if(Math.abs(ray[a])<1e-8){if(origin[a]<g.low[a]-.002||origin[a]>g.high[a]+.002)return Infinity;continue}
+        const t=(g.low[a]-origin[a])/ray[a],u=(g.high[a]-origin[a])/ray[a];
+        near=Math.max(near,Math.min(t,u));far=Math.min(far,Math.max(t,u));
+    }
+    return near<=far+.002?near:Infinity;
+}
+// Material seams duplicate vertices. Join by quantized position to identify the piece the user hit.
+function measuredPiece(g,face){
+    const {idx,pos}=measureMesh,parents=new Int32Array(g.count/3),owners=new Map();
+    function root(i){while(parents[i]!==i){parents[i]=parents[parents[i]];i=parents[i]}return i}
+    for(let t=0;t<parents.length;t++){
+        parents[t]=t;
+        for(let i=0;i<3;i++){
+            const k=idx[g.start+t*3+i]*3;
+            const key=((pos[k]+32768)*65536+pos[k+1]+32768)*65536+pos[k+2]+32768;
+            const first=owners.get(key);if(first===undefined)owners.set(key,t);else parents[root(t)]=root(first);
+        }
+    }
+    const owner=root((face-g.start)/3),lo=[Infinity,Infinity,Infinity],hi=[-Infinity,-Infinity,-Infinity];
+    let count=0;
+    for(let t=0;t<parents.length;t++){
+        if(root(t)!==owner)continue;count++;
+        for(let i=0;i<3;i++){const k=idx[g.start+t*3+i]*3;
+            for(let a=0;a<3;a++){const v=pos[k+a]/128;lo[a]=Math.min(lo[a],v);hi[a]=Math.max(hi[a],v)}}
+    }
+    if(count===parents.length)return g.item;
+    const [x,y,z]=lo,[X,Y,Z]=hi;
+    return {...g.item,title:g.item.title+' · selected piece',
+        rows:[['East–west extent',inFeet(X-x)],['North–south extent',inFeet(Y-y)],['Vertical extent',inFeet(Z-z)]],
+        note:'Dimensions of the connected geometry you tapped, measured along the model axes in its resting position.',
+        lines:[[lo,[X,y,z]],[lo,[x,Y,z]],[lo,[x,y,Z]]]};
+}
+function meshHit(origin,ray,g,best){
+    const {idx}=measureMesh,[dx,dy,dz]=ray;
+    const moving=g.motion.part!==0,pos=measureMesh.pos;
+    const transformed=moving?new Map():null;
+    function point(i){
+        if(!transformed.has(i))transformed.set(i,movingMeasurePoint(g,[pos[i]/128,pos[i+1]/128,pos[i+2]/128]));
+        return transformed.get(i);
+    }
+    for(let j=g.start;j<g.start+g.count;j+=3){
+        const a=idx[j]*3,b=idx[j+1]*3,c=idx[j+2]*3;
+        const A=moving?point(a):null,B=moving?point(b):null,C=moving?point(c):null;
+        const ux=moving?B[0]-A[0]:(pos[b]-pos[a])/128,uy=moving?B[1]-A[1]:(pos[b+1]-pos[a+1])/128,uz=moving?B[2]-A[2]:(pos[b+2]-pos[a+2])/128;
+        const vx=moving?C[0]-A[0]:(pos[c]-pos[a])/128,vy=moving?C[1]-A[1]:(pos[c+1]-pos[a+1])/128,vz=moving?C[2]-A[2]:(pos[c+2]-pos[a+2])/128;
+        const px=dy*vz-dz*vy,py=dz*vx-dx*vz,pz=dx*vy-dy*vx,det=ux*px+uy*py+uz*pz;
+        if(Math.abs(det)<1e-9)continue;
+        const ox=origin[0]-(moving?A[0]:pos[a]/128),oy=origin[1]-(moving?A[1]:pos[a+1]/128),oz=origin[2]-(moving?A[2]:pos[a+2]/128);
+        const u=(ox*px+oy*py+oz*pz)/det;if(u<0||u>1)continue;
+        const qx=oy*uz-oz*uy,qy=oz*ux-ox*uz,qz=ox*uy-oy*ux;
+        const v=(dx*qx+dy*qy+dz*qz)/det;if(v<0||v+u>1)continue;
+        const t=(vx*qx+vy*qy+vz*qz)/det;if(t>.07&&t<best){best=t;g.hitFace=j}
+    }return best;
+}
+function pickMeasurement(x,y){
+    const v=measureView(townCamera(state,false)),side=(2*x/v.w-1)*v.w/v.h/v.f,up=(1-2*y/v.h)/v.f+v.shift;
+    const ray=v.dir.map((n,i)=>n+side*v.right[i]+up*v.up[i]);
+    let best=Infinity,item=null,group=null;
+    const candidates=measureGroups.filter(g=>!(g.name==='Window safety rods'&&!state.showRods)).map(g=>[g.motion.part?0:rayGroupDistance(v.eye,ray,g),g]).filter(p=>Number.isFinite(p[0])).sort((a,b)=>a[0]-b[0]);
+    for(const [near,g] of candidates){
+        if(near>best)break;
+        const t=meshHit(v.eye,ray,g,best);if(t<best){best=t;item=g.item;group=g}
+    }
+    if(group){
+        const hit=v.eye.map((n,i)=>n+ray[i]*best);
+        if(/walls|Window glass/i.test(group.name)){
+            const wall=measureSolids.find(w=>Math.abs(hit[w.plane]-w.k)<.30&&hit[1-w.plane]>=w.lo-.01&&hit[1-w.plane]<=w.hi+.01&&hit[2]>=w.z-.01&&hit[2]<=w.z+9.56);
+            if(wall){const op=wall.parts.find(p=>hit[1-wall.plane]>=p.a&&hit[1-wall.plane]<=p.b&&hit[2]-wall.z>=p.s&&hit[2]-wall.z<=p.h);item=op?.item||wall.row}
+        }
+        if(/floor/i.test(group.name)){const zone=measureFloors.find(r=>Math.abs(hit[2]-r.z)<.3&&insidePlan(hit[0],hit[1],r.poly));if(zone)item=zone.item}
+    }
+    for(const r of measureFloors){
+        if(Math.abs(ray[2])<1e-8)break;
+        const t=(r.z-v.eye[2])/ray[2];
+        if(t>.07&&t<best-.01&&insidePlan(v.eye[0]+ray[0]*t,v.eye[1]+ray[1]*t,r.poly)){item=r.item;best=t}
+    }
+    if(group&&item===group.item)item=measuredPiece(group,group.hitFace);
+    if(item)showMeasureItem(item);
+}
+
+
 window.addEventListener('hashchange',()=>{placeAtEntrance();resetInput();request()});
 
 let rendererLost=false;
@@ -1840,30 +2165,30 @@ linear[0]+=(vx-linear[0])*ease;linear[1]+=(vy-linear[1])*ease;const moving=Math.
 let prev=state.o.slice();if(moving&&eagle){const speed=eagle.h*.215;eagle.x=Math.max(-62,Math.min(69,eagle.x+linear[0]*dt*speed));eagle.y=Math.max(-50,Math.min(88,eagle.y+linear[1]*dt*speed));}else if(moving){const steps=Math.max(1,Math.ceil(dt/.023));for(let k=0;k<steps;k++)moveCamera(walls,state,linear[0]*dt/steps,linear[1]*dt/steps)}let goal=foot(state.p[0],state.p[1],state.level,state.underStair)+EYE;oldFloor+=(goal-oldFloor)*(reduce?1:1-Math.exp(-dt*21));state.p[2]=oldFloor;
 state.fov=73-12*Math.min(1,Math.max(0,(state.p[0]+3.5)/6.2));
 let desired=remotePortals(openings(...state.p),prev);state.o=doorAdvance(prev,desired,dt,state.p[0],state.p[1],state.level);
-const meterMoving=advanceMeter(dt),gatesMoving=advanceSideGates(dt),weatherStep=stepWeather(dt);
+const meterMoving=advanceMeter(dt),gatesMoving=advanceSideGates(dt),weatherStep=stepWeather(dt,now);
 let door=state.o.some((v,i)=>Math.abs(v-(prev[i]??0))>.00005);
-let environmentalChange=stepLighting(dt)||weatherStep.fading||!!render3d.pendingEnvironment;
+let environmentalChange=stepLighting(dt)||weatherStep.changed||!!render3d.pendingEnvironment;
 
 let busy=moving||looking||door||meterMoving||gatesMoving||Math.abs(goal-oldFloor)>.003;
 const cityLive=(pulhat().people.length>0||pulhat().traffic.length>0)&&(!!eagle||townOutside(state))&&!reduce;
 state.townTime=(state.townTime||0)+(reduce?0:dt);
 const weatherFrame=(weatherStep.animated||cityLive)&&now-lastWeatherFrame>=(accelerated?41:125);
 if(dirty||busy||environmentalChange||weatherFrame){if(busy&&wasBusy)tuneScale(elapsed,now);else if(!busy)paceSample=[];
-const active=busy||weatherStep.animated||cityLive;let w=cvs.clientWidth,h=cvs.clientHeight,ratio=accelerated?Math.min(active?res:1.5,active?devicePixelRatio:Math.max(1.25,devicePixelRatio),(active?1500:3200)/Math.max(w,h)):Math.min(1,(active?450:900)/Math.max(w,h));if(w&&h)render3d.frame(townCamera(state,moving),Math.max(2,Math.round(w*ratio)),Math.max(2,Math.round(h*ratio)),busy&&res<.88,!!active);lastWeatherFrame=now;dirty=false;frames++}
+const active=busy||weatherStep.fading||weatherStep.animated||cityLive;let w=cvs.clientWidth,h=cvs.clientHeight,ratio=accelerated?Math.min(active?res:1.5,active?devicePixelRatio:Math.max(1.25,devicePixelRatio),(active?1500:3200)/Math.max(w,h)):Math.min(1,(active?450:900)/Math.max(w,h));if(w&&h)render3d.frame(townCamera(state,moving),Math.max(2,Math.round(w*ratio)),Math.max(2,Math.round(h*ratio)),busy&&res<.88,!!active);if(!measurePanel.hidden)drawMeasurement(townCamera(state,moving));lastWeatherFrame=now;dirty=false;frames++}
 if(wasBusy&&!busy){dirty=true;scheduleFrame()}wasBusy=!!busy;if(busy||keyboard.size||pointers.size||environmentalChange||cityLive||weatherStep.animated||render3d.pendingEnvironment){scheduleFrame()}}
 cvs.onpointerdown=e=>{
     if(e.button!==0)return;
     if(!remotePanel.hidden){showRemote(false);return}
     dismiss();cvs.focus({preventScroll:true});
     try{cvs.setPointerCapture(e.pointerId)}catch(error){}
-    const hit=eagle?null:exteriorTarget(cameraRay(e.clientX,e.clientY));
+    const hit=eagle||!measurePanel.hidden?null:exteriorTarget(cameraRay(e.clientX,e.clientY));
     pointers.set(e.pointerId,{x:e.clientX,y:e.clientY,ox:e.clientX,oy:e.clientY,hit,dragged:false,walkingThumb:e.pointerType==='touch'&&e.clientX<cvs.clientWidth*.48,
         move:!hit&&e.pointerType==='touch'&&e.clientX<cvs.clientWidth*.48});
     request();
 };
 cvs.onpointermove=e=>{
     const p=pointers.get(e.pointerId);
-    if(!p){if(e.pointerType==='mouse')exteriorHover(eagle?null:exteriorTarget(cameraRay(e.clientX,e.clientY)));return}
+    if(!p){if(e.pointerType==='mouse')exteriorHover(eagle||!measurePanel.hidden?null:exteriorTarget(cameraRay(e.clientX,e.clientY)));return}
     const dx=e.clientX-p.x,dy=e.clientY-p.y;
     const travelX=e.clientX-p.ox,travelY=e.clientY-p.oy;
     if(Math.hypot(travelX,travelY)>=7)p.dragged=true;
@@ -1877,17 +2202,20 @@ cvs.onpointermove=e=>{
 };
 cvs.onpointerup=cvs.onpointercancel=cvs.onlostpointercapture=e=>{
     const p=pointers.get(e.pointerId);if(!p)return;
-    if(e.type==='pointerup'&&!p.dragged&&p.hit&&Math.hypot(e.clientX-p.ox,e.clientY-p.oy)<8)activateFixture(p.hit);
+    if(e.type==='pointerup'&&!p.dragged&&!measurePanel.hidden)pickMeasurement(e.clientX,e.clientY);
+    else if(e.type==='pointerup'&&!p.dragged&&p.hit&&Math.hypot(e.clientX-p.ox,e.clientY-p.oy)<8)activateFixture(p.hit);
     if(p.move)analog=[0,0];pointers.delete(e.pointerId);request();
 };
 cvs.onpointerleave=()=>{if(!pointers.size&&hoverHint)exteriorHover(null)};
 const allowed=['shift','w','a','s','d','q','e','arrowup','arrowdown','arrowleft','arrowright'];
 window.onkeydown=e=>{let key=e.key.toLowerCase();if(e.ctrlKey||e.metaKey||e.altKey)return;
+if(key==='escape'&&!measurePanel.hidden){e.preventDefault();showMeasurements(false);return}
+if(e.target===measureSearch)return;
 if(remotePanel.hidden&&e.target?.tagName!=='SELECT'&&e.target?.tagName!=='INPUT'){if((key==='b'||key==='escape'&&eagle)&&!e.repeat){e.preventDefault();toggleEagle();return}if(eagle&&['=','+','-'].includes(key)){e.preventDefault();eagleZoom(key==='-'?1.18:.85);return}}
 if(key==='v'&&!e.repeat&&e.target?.tagName!=='SELECT'&&remotePanel.hidden){e.preventDefault();toggleTownView();return}
 if(key==='m'&&!e.repeat&&e.target?.tagName!=='SELECT'){e.preventDefault();showRemote(remotePanel.hidden);return}
 if(key==='escape'&&!remotePanel.hidden){e.preventDefault();showRemote(false);return}
-if(!remotePanel.hidden||e.target===weatherSelect||e.target?.tagName==='BUTTON'&&[' ','enter','arrowleft','arrowright'].includes(key))return;if(!e.ctrlKey&&!e.altKey&&!e.metaKey&&!eagle&&securityKeydown(key,e.repeat)){e.preventDefault();return}if(/^[1-4]$/.test(key)&&!e.ctrlKey&&!e.metaKey&&!e.altKey){chooseTime(Number(key)-1);return}if(allowed.includes(key)){e.preventDefault();dismiss();keyboard.add(key);request()}};
+if(!remotePanel.hidden||e.target===weatherSelect||e.target?.tagName==='BUTTON'&&[' ','enter','arrowleft','arrowright'].includes(key))return;if(!e.ctrlKey&&!e.altKey&&!e.metaKey&&!eagle&&measurePanel.hidden&&securityKeydown(key,e.repeat)){e.preventDefault();return}if(/^[1-4]$/.test(key)&&!e.ctrlKey&&!e.metaKey&&!e.altKey){chooseTime(Number(key)-1);return}if(allowed.includes(key)){e.preventDefault();dismiss();keyboard.add(key);request()}};
 window.onkeyup=e=>{keyboard.delete(e.key.toLowerCase());request()};window.onblur=()=>{resetInput();request()};document.onvisibilitychange=()=>{resetInput();last=performance.now();request()};
 cvs.addEventListener('webglcontextlost',e=>{e.preventDefault();rendererLost=true;resetInput();frameTicket++;clearTimeout(wakeTimer);if(again)cancelAnimationFrame(again);again=0});cvs.addEventListener('webglcontextrestored',()=>{rendererLost=false;render3d=null;initRenderer();request()});
 new ResizeObserver(request).observe(cvs);cvs.focus({preventScroll:true});request();setTimeout(dismiss,5200);
